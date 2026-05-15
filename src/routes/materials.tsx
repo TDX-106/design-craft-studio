@@ -4,6 +4,32 @@ import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { PageWrap, Reveal, SectionLabel } from "@/components/PageWrap";
 
+import smokedOak from "@/assets/materials/smoked-oak.jpg";
+import walnut from "@/assets/materials/walnut.jpg";
+import bleachedAsh from "@/assets/materials/bleached-ash.jpg";
+import teak from "@/assets/materials/teak.jpg";
+import charredWood from "@/assets/materials/charred-wood.jpg";
+import maple from "@/assets/materials/maple.jpg";
+import carrara from "@/assets/materials/carrara.jpg";
+import travertine from "@/assets/materials/travertine.jpg";
+import slate from "@/assets/materials/slate.jpg";
+import calacatta from "@/assets/materials/calacatta.jpg";
+import neroMarquina from "@/assets/materials/nero-marquina.jpg";
+import granite from "@/assets/materials/granite.jpg";
+import brass from "@/assets/materials/brass.jpg";
+import blackenedSteel from "@/assets/materials/blackened-steel.jpg";
+import chrome from "@/assets/materials/chrome.jpg";
+import copper from "@/assets/materials/copper.jpg";
+import stainless from "@/assets/materials/stainless.jpg";
+import gunmetal from "@/assets/materials/gunmetal.jpg";
+import boucle from "@/assets/materials/boucle.jpg";
+import linen from "@/assets/materials/linen.jpg";
+import velvet from "@/assets/materials/velvet.jpg";
+import ribbedGlass from "@/assets/materials/ribbed-glass.jpg";
+import smokedGlass from "@/assets/materials/smoked-glass.jpg";
+import polishedConcrete from "@/assets/materials/polished-concrete.jpg";
+import microcement from "@/assets/materials/microcement.jpg";
+
 export const Route = createFileRoute("/materials")({
   head: () => ({
     meta: [
@@ -20,127 +46,50 @@ interface Material {
   name: string;
   cat: Exclude<Cat, "All">;
   desc: string;
-  bg: string;
+  img: string;
   notes: string;
 }
 
 const materials: Material[] = [
-  { name: "Smoked Oak", cat: "Wood", desc: "Warm grain, deep amber undertones.", notes: "Pairs with linen, brass.", bg: "linear-gradient(135deg,#8b6f47 0%,#5a4530 50%,#3d2f20 100%)" },
-  { name: "Walnut Veneer", cat: "Wood", desc: "Rich chocolate with quiet figure.", notes: "Soft sheen finish.", bg: "linear-gradient(135deg,#6b4423 0%,#4a2e15 100%)" },
-  { name: "Bleached Ash", cat: "Wood", desc: "Pale, calm, scandi feel.", notes: "Matte sealed.", bg: "linear-gradient(135deg,#e8dcc4 0%,#c9b896 100%)" },
-  { name: "Carrara Marble", cat: "Stone", desc: "Soft white with feathered grey veins.", notes: "Honed surface.", bg: "linear-gradient(135deg,#f5f3ed 0%,#d8d4ca 60%,#a8a298 100%)" },
-  { name: "Travertine", cat: "Stone", desc: "Warm porous limestone.", notes: "Filled & polished.", bg: "linear-gradient(135deg,#e0c9a6 0%,#c4a578 100%)" },
-  { name: "Slate Black", cat: "Stone", desc: "Cleft surface, deep matte.", notes: "Cool undertone.", bg: "linear-gradient(135deg,#3a3a3a 0%,#1a1a1a 100%)" },
-  { name: "Brushed Brass", cat: "Metal", desc: "Warm gold with grain.", notes: "Lacquered.", bg: "linear-gradient(135deg,#d4a544 0%,#a07820 100%)" },
-  { name: "Blackened Steel", cat: "Metal", desc: "Patinated industrial finish.", notes: "Hand-waxed.", bg: "linear-gradient(135deg,#3d3d3d 0%,#1f1f1f 100%)" },
-  { name: "Polished Chrome", cat: "Metal", desc: "Mirror sheen, cool reflective.", notes: "High gloss.", bg: "linear-gradient(135deg,#e8eaed 0%,#a0a8b0 50%,#5a6068 100%)" },
-  { name: "Bouclé Cream", cat: "Fabric", desc: "Looped, sculptural texture.", notes: "Wool blend.", bg: "linear-gradient(135deg,#f0e6d2 0%,#d8caa8 100%)" },
-  { name: "Linen Stone", cat: "Fabric", desc: "Soft natural weave.", notes: "Pre-washed.", bg: "linear-gradient(135deg,#cfc4b0 0%,#a89a82 100%)" },
-  { name: "Velvet Forest", cat: "Fabric", desc: "Deep mossy green pile.", notes: "Cotton velvet.", bg: "linear-gradient(135deg,#3d5a40 0%,#1f3525 100%)" },
-  { name: "Ribbed Glass", cat: "Glass", desc: "Vertical fluting, soft diffuse.", notes: "Clear tempered.", bg: "linear-gradient(90deg,#d8e4e8 0%,#a8c0c8 25%,#d8e4e8 50%,#a8c0c8 75%,#d8e4e8 100%)" },
-  { name: "Smoked Glass", cat: "Glass", desc: "Translucent bronze tint.", notes: "Tempered safety.", bg: "linear-gradient(135deg,#5a4a3a 0%,#2a221a 100%)" },
-  { name: "Polished Concrete", cat: "Concrete", desc: "Sealed, soft sheen.", notes: "Power-troweled.", bg: "linear-gradient(135deg,#a8a098 0%,#787068 100%)" },
-  { name: "Microcement", cat: "Concrete", desc: "Seamless, warm grey.", notes: "Hand-troweled.", bg: "linear-gradient(135deg,#c4bcaf 0%,#948a7c 100%)" },
+  // Wood — 6
+  { name: "Smoked Oak", cat: "Wood", desc: "Warm grain, deep amber undertones.", notes: "Pairs with linen, brass.", img: smokedOak },
+  { name: "Walnut Veneer", cat: "Wood", desc: "Rich chocolate with quiet figure.", notes: "Soft sheen finish.", img: walnut },
+  { name: "Bleached Ash", cat: "Wood", desc: "Pale, calm, scandi feel.", notes: "Matte sealed.", img: bleachedAsh },
+  { name: "Reclaimed Teak", cat: "Wood", desc: "Golden, weathered, full of story.", notes: "Hand-oiled.", img: teak },
+  { name: "Charred Cedar", cat: "Wood", desc: "Shou sugi ban — burnt, textural.", notes: "Wax-sealed.", img: charredWood },
+  { name: "Soft Maple", cat: "Wood", desc: "Blonde, even, gently figured.", notes: "Clear lacquer.", img: maple },
+
+  // Stone — 6
+  { name: "Carrara Marble", cat: "Stone", desc: "Soft white with feathered grey veins.", notes: "Honed surface.", img: carrara },
+  { name: "Travertine", cat: "Stone", desc: "Warm porous limestone.", notes: "Filled & polished.", img: travertine },
+  { name: "Slate Black", cat: "Stone", desc: "Cleft surface, deep matte.", notes: "Cool undertone.", img: slate },
+  { name: "Calacatta Gold", cat: "Stone", desc: "White marble laced with bold gold.", notes: "Polished slab.", img: calacatta },
+  { name: "Nero Marquina", cat: "Stone", desc: "Black marble, electric white veining.", notes: "Polished.", img: neroMarquina },
+  { name: "Speckled Granite", cat: "Stone", desc: "Hardwearing, peppered crystal.", notes: "Flamed finish.", img: granite },
+
+  // Metal — 6
+  { name: "Brushed Brass", cat: "Metal", desc: "Warm gold with horizontal grain.", notes: "Lacquered.", img: brass },
+  { name: "Blackened Steel", cat: "Metal", desc: "Patinated industrial finish.", notes: "Hand-waxed.", img: blackenedSteel },
+  { name: "Polished Chrome", cat: "Metal", desc: "Mirror sheen, cool reflective.", notes: "High gloss.", img: chrome },
+  { name: "Brushed Copper", cat: "Metal", desc: "Warm pink-orange, lively patina.", notes: "Sealed matte.", img: copper },
+  { name: "Brushed Stainless", cat: "Metal", desc: "Cool silver, architectural.", notes: "Directional grain.", img: stainless },
+  { name: "Gunmetal", cat: "Metal", desc: "Deep graphite, subtle sheen.", notes: "PVD-coated.", img: gunmetal },
+
+  // Fabric — 3
+  { name: "Bouclé Cream", cat: "Fabric", desc: "Looped, sculptural texture.", notes: "Wool blend.", img: boucle },
+  { name: "Linen Stone", cat: "Fabric", desc: "Soft natural weave.", notes: "Pre-washed.", img: linen },
+  { name: "Velvet Forest", cat: "Fabric", desc: "Deep mossy green pile.", notes: "Cotton velvet.", img: velvet },
+
+  // Glass — 2
+  { name: "Ribbed Glass", cat: "Glass", desc: "Vertical fluting, soft diffuse.", notes: "Clear tempered.", img: ribbedGlass },
+  { name: "Smoked Glass", cat: "Glass", desc: "Translucent bronze tint.", notes: "Tempered safety.", img: smokedGlass },
+
+  // Concrete — 2
+  { name: "Polished Concrete", cat: "Concrete", desc: "Sealed, soft sheen.", notes: "Power-troweled.", img: polishedConcrete },
+  { name: "Microcement", cat: "Concrete", desc: "Seamless, warm grey.", notes: "Hand-troweled.", img: microcement },
 ];
 
 const cats: Cat[] = ["All", "Wood", "Stone", "Metal", "Fabric", "Glass", "Concrete"];
-
-// SVG texture overlays per material category — gives each swatch a tactile surface
-function TextureOverlay({ cat }: { cat: Material["cat"] }) {
-  const id = `tex-${cat}`;
-  switch (cat) {
-    case "Wood":
-      return (
-        <svg className="absolute inset-0 w-full h-full mix-blend-overlay opacity-80" preserveAspectRatio="none" viewBox="0 0 200 200">
-          <defs>
-            <filter id={id}>
-              <feTurbulence type="fractalNoise" baseFrequency="0.012 0.9" numOctaves="3" seed="4" />
-              <feColorMatrix values="0 0 0 0 0.25  0 0 0 0 0.15  0 0 0 0 0.05  0 0 0 0.55 0" />
-            </filter>
-          </defs>
-          <rect width="100%" height="100%" filter={`url(#${id})`} />
-        </svg>
-      );
-    case "Stone":
-      return (
-        <svg className="absolute inset-0 w-full h-full mix-blend-soft-light opacity-90" preserveAspectRatio="none" viewBox="0 0 200 200">
-          <defs>
-            <filter id={id}>
-              <feTurbulence type="turbulence" baseFrequency="0.025" numOctaves="4" seed="2" />
-              <feDisplacementMap in="SourceGraphic" scale="6" />
-              <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.5 0" />
-            </filter>
-          </defs>
-          <rect width="100%" height="100%" filter={`url(#${id})`} />
-          <g stroke="rgba(80,75,70,0.35)" fill="none" strokeWidth="0.6">
-            <path d="M-5 60 Q60 40 130 80 T220 70" />
-            <path d="M-5 110 Q70 95 140 130 T220 120" />
-            <path d="M-5 160 Q50 150 120 175 T220 165" />
-          </g>
-        </svg>
-      );
-    case "Metal":
-      return (
-        <svg className="absolute inset-0 w-full h-full mix-blend-overlay opacity-90" preserveAspectRatio="none" viewBox="0 0 200 200">
-          <defs>
-            <filter id={id}>
-              <feTurbulence type="fractalNoise" baseFrequency="0.005 1.4" numOctaves="2" seed="7" />
-              <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.45 0" />
-            </filter>
-            <linearGradient id={`${id}-g`} x1="0" x2="1">
-              <stop offset="0" stopColor="rgba(255,255,255,0.25)" />
-              <stop offset=".5" stopColor="rgba(255,255,255,0)" />
-              <stop offset="1" stopColor="rgba(0,0,0,0.25)" />
-            </linearGradient>
-          </defs>
-          <rect width="100%" height="100%" filter={`url(#${id})`} />
-          <rect width="100%" height="100%" fill={`url(#${id}-g)`} />
-        </svg>
-      );
-    case "Fabric":
-      return (
-        <svg className="absolute inset-0 w-full h-full mix-blend-overlay opacity-95" preserveAspectRatio="none" viewBox="0 0 200 200">
-          <defs>
-            <pattern id={id} width="6" height="6" patternUnits="userSpaceOnUse">
-              <path d="M0 3 H6 M3 0 V6" stroke="rgba(255,255,255,0.18)" strokeWidth="0.6" />
-              <path d="M0 0 L6 6 M6 0 L0 6" stroke="rgba(0,0,0,0.12)" strokeWidth="0.4" />
-            </pattern>
-            <filter id={`${id}-n`}>
-              <feTurbulence baseFrequency="0.9" numOctaves="2" />
-              <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.25 0" />
-            </filter>
-          </defs>
-          <rect width="100%" height="100%" fill={`url(#${id})`} />
-          <rect width="100%" height="100%" filter={`url(#${id}-n)`} />
-        </svg>
-      );
-    case "Glass":
-      return (
-        <svg className="absolute inset-0 w-full h-full mix-blend-screen opacity-70" preserveAspectRatio="none" viewBox="0 0 200 200">
-          <defs>
-            <linearGradient id={id} x1="0" x2="1">
-              {Array.from({ length: 12 }).map((_, i) => (
-                <stop key={i} offset={`${(i / 11) * 100}%`} stopColor={i % 2 ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0)"} />
-              ))}
-            </linearGradient>
-          </defs>
-          <rect width="100%" height="100%" fill={`url(#${id})`} />
-        </svg>
-      );
-    case "Concrete":
-      return (
-        <svg className="absolute inset-0 w-full h-full mix-blend-overlay opacity-90" preserveAspectRatio="none" viewBox="0 0 200 200">
-          <defs>
-            <filter id={id}>
-              <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="9" />
-              <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0" />
-            </filter>
-          </defs>
-          <rect width="100%" height="100%" filter={`url(#${id})`} />
-        </svg>
-      );
-  }
-}
 
 function Materials() {
   const [cat, setCat] = useState<Cat>("All");
@@ -162,7 +111,7 @@ function Materials() {
         <SectionLabel>Materials Library</SectionLabel>
         <h1 className="font-display text-5xl md:text-7xl mb-4 text-balance">A tactile reference.</h1>
         <p className="text-muted-foreground max-w-xl">
-          Sixteen surfaces, six categories — each rendered with its own grain, weave, or polish.
+          {materials.length} surfaces across six categories — photographed close, true to grain, vein and weave.
         </p>
       </Reveal>
 
@@ -178,19 +127,23 @@ function Materials() {
             />
           </div>
           <div className="flex flex-wrap gap-2">
-            {cats.map((c) => (
-              <button
-                key={c}
-                onClick={() => setCat(c)}
-                className={`relative px-4 py-2 text-sm rounded-full border transition ${
-                  cat === c
-                    ? "bg-charcoal text-warm-white border-charcoal"
-                    : "bg-card border-border hover:border-accent-pistachio"
-                }`}
-              >
-                {c}
-              </button>
-            ))}
+            {cats.map((c) => {
+              const count = c === "All" ? materials.length : materials.filter((m) => m.cat === c).length;
+              return (
+                <button
+                  key={c}
+                  onClick={() => setCat(c)}
+                  className={`relative px-4 py-2 text-sm rounded-full border transition ${
+                    cat === c
+                      ? "bg-charcoal text-warm-white border-charcoal"
+                      : "bg-card border-border hover:border-accent-pistachio"
+                  }`}
+                >
+                  {c}
+                  <span className="ml-2 opacity-60 text-xs">{count}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
       </Reveal>
@@ -209,14 +162,17 @@ function Materials() {
               className="group relative rounded-3xl overflow-hidden bg-card border border-border shadow-soft hover:shadow-elegant transition-shadow"
             >
               <div className="relative h-56 overflow-hidden">
-                <div
-                  className="absolute inset-0 transition-transform duration-700 group-hover:scale-110"
-                  style={{ background: m.bg }}
+                <img
+                  src={m.img}
+                  alt={m.name}
+                  loading="lazy"
+                  width={768}
+                  height={768}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <TextureOverlay cat={m.cat} />
                 {/* sheen on hover */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/0 to-white/20 opacity-0 group-hover:opacity-100 transition duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0 to-transparent opacity-70" />
                 <span className="absolute top-4 left-4 glass-dark text-warm-white text-[10px] uppercase tracking-[0.2em] px-3 py-1 rounded-full">
                   {m.cat}
                 </span>
