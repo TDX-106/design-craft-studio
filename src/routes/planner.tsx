@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import { Trash2, RotateCcw } from "lucide-react";
-import { motion } from "framer-motion";
+
 import { PageWrap, Reveal, SectionLabel } from "@/components/PageWrap";
 
 export const Route = createFileRoute("/planner")({
