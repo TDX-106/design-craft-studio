@@ -29,6 +29,23 @@ import ribbedGlass from "@/assets/materials/ribbed-glass.jpg";
 import smokedGlass from "@/assets/materials/smoked-glass.jpg";
 import polishedConcrete from "@/assets/materials/polished-concrete.jpg";
 import microcement from "@/assets/materials/microcement.jpg";
+import ebony from "@/assets/materials/ebony.jpg";
+import cherry from "@/assets/materials/cherry.jpg";
+import bamboo from "@/assets/materials/bamboo.jpg";
+import onyx from "@/assets/materials/onyx.jpg";
+import sandstone from "@/assets/materials/sandstone.jpg";
+import greenMarble from "@/assets/materials/green-marble.jpg";
+import terrazzo from "@/assets/materials/terrazzo.jpg";
+import corten from "@/assets/materials/corten.jpg";
+import titanium from "@/assets/materials/titanium.jpg";
+import pewter from "@/assets/materials/pewter.jpg";
+import leather from "@/assets/materials/leather.jpg";
+import woolFelt from "@/assets/materials/wool-felt.jpg";
+import silk from "@/assets/materials/silk.jpg";
+import jute from "@/assets/materials/jute.jpg";
+import frostedGlass from "@/assets/materials/frosted-glass.jpg";
+import reededGlass from "@/assets/materials/reeded-glass.jpg";
+import boardConcrete from "@/assets/materials/board-concrete.jpg";
 
 export const Route = createFileRoute("/materials")({
   head: () => ({
@@ -40,7 +57,7 @@ export const Route = createFileRoute("/materials")({
   component: Materials,
 });
 
-type Cat = "All" | "Wood" | "Stone" | "Metal" | "Fabric" | "Glass" | "Concrete";
+type Cat = "All" | "Wood" | "Stone" | "Metal" | "Fabric" | "Leather" | "Glass" | "Concrete";
 
 interface Material {
   name: string;
@@ -51,45 +68,64 @@ interface Material {
 }
 
 const materials: Material[] = [
-  // Wood — 6
+  // Wood
   { name: "Smoked Oak", cat: "Wood", desc: "Warm grain, deep amber undertones.", notes: "Pairs with linen, brass.", img: smokedOak },
   { name: "Walnut Veneer", cat: "Wood", desc: "Rich chocolate with quiet figure.", notes: "Soft sheen finish.", img: walnut },
   { name: "Bleached Ash", cat: "Wood", desc: "Pale, calm, scandi feel.", notes: "Matte sealed.", img: bleachedAsh },
   { name: "Reclaimed Teak", cat: "Wood", desc: "Golden, weathered, full of story.", notes: "Hand-oiled.", img: teak },
   { name: "Charred Cedar", cat: "Wood", desc: "Shou sugi ban — burnt, textural.", notes: "Wax-sealed.", img: charredWood },
   { name: "Soft Maple", cat: "Wood", desc: "Blonde, even, gently figured.", notes: "Clear lacquer.", img: maple },
+  { name: "Macassar Ebony", cat: "Wood", desc: "Near-black with copper streaks.", notes: "French polished.", img: ebony },
+  { name: "American Cherry", cat: "Wood", desc: "Warm reddish, ages beautifully.", notes: "Satin oil.", img: cherry },
+  { name: "Bamboo Ply", cat: "Wood", desc: "Pale, striated, sustainable.", notes: "Edge-grain panel.", img: bamboo },
 
-  // Stone — 6
+  // Stone
   { name: "Carrara Marble", cat: "Stone", desc: "Soft white with feathered grey veins.", notes: "Honed surface.", img: carrara },
   { name: "Travertine", cat: "Stone", desc: "Warm porous limestone.", notes: "Filled & polished.", img: travertine },
   { name: "Slate Black", cat: "Stone", desc: "Cleft surface, deep matte.", notes: "Cool undertone.", img: slate },
   { name: "Calacatta Gold", cat: "Stone", desc: "White marble laced with bold gold.", notes: "Polished slab.", img: calacatta },
   { name: "Nero Marquina", cat: "Stone", desc: "Black marble, electric white veining.", notes: "Polished.", img: neroMarquina },
   { name: "Speckled Granite", cat: "Stone", desc: "Hardwearing, peppered crystal.", notes: "Flamed finish.", img: granite },
+  { name: "Pink Onyx", cat: "Stone", desc: "Translucent peach, dreamy strata.", notes: "Backlit-ready.", img: onyx },
+  { name: "Sandstone", cat: "Stone", desc: "Warm desert tone, fine grain.", notes: "Sawn finish.", img: sandstone },
+  { name: "Verde Alpi", cat: "Stone", desc: "Deep emerald with white veins.", notes: "Polished.", img: greenMarble },
+  { name: "Terrazzo", cat: "Stone", desc: "Cement base, jewel-like chips.", notes: "Ground & sealed.", img: terrazzo },
 
-  // Metal — 6
+  // Metal
   { name: "Brushed Brass", cat: "Metal", desc: "Warm gold with horizontal grain.", notes: "Lacquered.", img: brass },
   { name: "Blackened Steel", cat: "Metal", desc: "Patinated industrial finish.", notes: "Hand-waxed.", img: blackenedSteel },
   { name: "Polished Chrome", cat: "Metal", desc: "Mirror sheen, cool reflective.", notes: "High gloss.", img: chrome },
   { name: "Brushed Copper", cat: "Metal", desc: "Warm pink-orange, lively patina.", notes: "Sealed matte.", img: copper },
   { name: "Brushed Stainless", cat: "Metal", desc: "Cool silver, architectural.", notes: "Directional grain.", img: stainless },
   { name: "Gunmetal", cat: "Metal", desc: "Deep graphite, subtle sheen.", notes: "PVD-coated.", img: gunmetal },
+  { name: "Corten Steel", cat: "Metal", desc: "Living rust, architectural warmth.", notes: "Weathered.", img: corten },
+  { name: "Brushed Titanium", cat: "Metal", desc: "Soft warm grey, aerospace feel.", notes: "Anodised.", img: titanium },
+  { name: "Hammered Pewter", cat: "Metal", desc: "Hand-dimpled, soft silver.", notes: "Wax finish.", img: pewter },
 
-  // Fabric — 3
+  // Fabric
   { name: "Bouclé Cream", cat: "Fabric", desc: "Looped, sculptural texture.", notes: "Wool blend.", img: boucle },
   { name: "Linen Stone", cat: "Fabric", desc: "Soft natural weave.", notes: "Pre-washed.", img: linen },
   { name: "Velvet Forest", cat: "Fabric", desc: "Deep mossy green pile.", notes: "Cotton velvet.", img: velvet },
+  { name: "Wool Felt", cat: "Fabric", desc: "Dense charcoal, acoustic-friendly.", notes: "Pressed.", img: woolFelt },
+  { name: "Raw Silk", cat: "Fabric", desc: "Ivory shimmer, fine slubs.", notes: "Hand-loomed.", img: silk },
+  { name: "Jute Weave", cat: "Fabric", desc: "Coarse natural fibre, golden.", notes: "Open weave.", img: jute },
 
-  // Glass — 2
+  // Leather
+  { name: "Cognac Leather", cat: "Leather", desc: "Full-grain, supple, develops patina.", notes: "Vegetable-tanned.", img: leather },
+
+  // Glass
   { name: "Ribbed Glass", cat: "Glass", desc: "Vertical fluting, soft diffuse.", notes: "Clear tempered.", img: ribbedGlass },
   { name: "Smoked Glass", cat: "Glass", desc: "Translucent bronze tint.", notes: "Tempered safety.", img: smokedGlass },
+  { name: "Frosted Glass", cat: "Glass", desc: "Acid-etched milky surface.", notes: "Sandblasted.", img: frostedGlass },
+  { name: "Reeded Glass", cat: "Glass", desc: "Wavy verticals, cool tint.", notes: "Cast pattern.", img: reededGlass },
 
-  // Concrete — 2
+  // Concrete
   { name: "Polished Concrete", cat: "Concrete", desc: "Sealed, soft sheen.", notes: "Power-troweled.", img: polishedConcrete },
   { name: "Microcement", cat: "Concrete", desc: "Seamless, warm grey.", notes: "Hand-troweled.", img: microcement },
+  { name: "Board-Formed Concrete", cat: "Concrete", desc: "Wood-grain imprint, brutalist.", notes: "As-cast.", img: boardConcrete },
 ];
 
-const cats: Cat[] = ["All", "Wood", "Stone", "Metal", "Fabric", "Glass", "Concrete"];
+const cats: Cat[] = ["All", "Wood", "Stone", "Metal", "Fabric", "Leather", "Glass", "Concrete"];
 
 function Materials() {
   const [cat, setCat] = useState<Cat>("All");
