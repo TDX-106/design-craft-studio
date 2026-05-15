@@ -1,13 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { ArrowRight, Palette, Layers, Lightbulb, Layout, Sparkles } from "lucide-react";
 import { PageWrap, Reveal, SectionLabel } from "@/components/PageWrap";
+import heroImg from "@/assets/hero-interior.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "DesignCraft — Design with Intention" },
       { name: "description", content: "A premium interactive design studio reference: materials, color, lighting, planner, and styles." },
+      { property: "og:image", content: "/assets/hero-interior.jpg" },
     ],
   }),
   component: Home,
@@ -22,29 +25,48 @@ const features = [
 ] as const;
 
 function Home() {
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  const imgScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.2]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
+  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0.45, 0.85]);
+
   return (
     <>
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero grain">
+      <section
+        ref={heroRef}
+        className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-charcoal"
+      >
+        {/* parallax photo */}
         <motion.div
           aria-hidden
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.4 }}
-          className="absolute inset-0"
+          style={{ y: imgY, scale: imgScale }}
+          className="absolute inset-0 will-change-transform"
         >
-          <div className="absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-accent-pistachio/30 blur-3xl animate-float" />
-          <div className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full bg-accent-light blur-3xl animate-float" style={{ animationDelay: "2s" }} />
+          <img
+            src={heroImg}
+            alt=""
+            width={1920}
+            height={1080}
+            className="w-full h-full object-cover"
+          />
         </motion.div>
+        {/* gradient overlays */}
+        <motion.div style={{ opacity: overlayOpacity }} className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-charcoal" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-black/50 via-transparent to-accent-pistachio/15" />
+        <div aria-hidden className="absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-accent-pistachio/20 blur-3xl animate-float" />
+        <div aria-hidden className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full bg-accent-pistachio/10 blur-3xl animate-float" style={{ animationDelay: "2s" }} />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+        <motion.div style={{ y: textY }} className="relative z-10 max-w-5xl mx-auto px-6 text-center text-warm-white">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-xs uppercase tracking-[0.2em] text-accent-sage"
+            className="inline-flex items-center gap-2 glass-dark px-4 py-2 rounded-full text-xs uppercase tracking-[0.2em] text-accent-pistachio"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-accent-sage animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-accent-pistachio animate-pulse" />
             Interior design reference
           </motion.span>
 
@@ -52,17 +74,17 @@ function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display text-[14vw] md:text-[8.5rem] leading-[0.95] mt-6 text-balance"
+            className="font-display text-[14vw] md:text-[8.5rem] leading-[0.95] mt-6 text-balance drop-shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
           >
             Design with
-            <span className="block italic text-accent-sage">Intention.</span>
+            <span className="block italic text-accent-pistachio">Intention.</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.55, duration: 0.8 }}
-            className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+            className="mt-8 text-lg md:text-xl text-warm-white/80 max-w-2xl mx-auto leading-relaxed"
           >
             A curated reference for materials, color, lighting and space — built for designers who
             shape rooms with quiet confidence.
@@ -76,27 +98,42 @@ function Home() {
           >
             <Link
               to="/materials"
-              className="group inline-flex items-center gap-2 bg-charcoal text-warm-white px-7 py-4 rounded-full font-medium hover:shadow-glow transition-all"
+              className="group inline-flex items-center gap-2 bg-warm-white text-charcoal px-7 py-4 rounded-full font-medium hover:shadow-glow transition-all"
             >
               Explore the studio
               <ArrowRight size={18} className="group-hover:translate-x-1 transition" />
             </Link>
             <Link
               to="/planner"
-              className="inline-flex items-center gap-2 glass px-7 py-4 rounded-full font-medium hover:bg-accent-light transition"
+              className="inline-flex items-center gap-2 glass-dark text-warm-white px-7 py-4 rounded-full font-medium hover:bg-white/10 transition"
             >
               Try the planner
             </Link>
           </motion.div>
-        </div>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.3em] text-muted-foreground"
+          animate={{ opacity: 1, y: [0, 8, 0] }}
+          transition={{ delay: 1.5, y: { duration: 2, repeat: Infinity } }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.3em] text-warm-white/70"
         >
           Scroll
+        </motion.div>
+      </section>
+
+      {/* MARQUEE */}
+      <section className="bg-charcoal text-warm-white/60 border-y border-warm-white/10 overflow-hidden">
+        <motion.div
+          className="flex gap-16 py-6 whitespace-nowrap font-display italic text-2xl md:text-3xl"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        >
+          {Array.from({ length: 2 }).flatMap((_, k) =>
+            ["Materials", "·", "Color", "·", "Lighting", "·", "Space", "·", "Style", "·", "Atmosphere", "·"].map((w, i) => (
+              <span key={`${k}-${i}`} className={w === "·" ? "text-accent-pistachio" : ""}>{w}</span>
+            ))
+          )}
         </motion.div>
       </section>
 

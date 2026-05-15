@@ -45,6 +45,103 @@ const materials: Material[] = [
 
 const cats: Cat[] = ["All", "Wood", "Stone", "Metal", "Fabric", "Glass", "Concrete"];
 
+// SVG texture overlays per material category — gives each swatch a tactile surface
+function TextureOverlay({ cat }: { cat: Material["cat"] }) {
+  const id = `tex-${cat}`;
+  switch (cat) {
+    case "Wood":
+      return (
+        <svg className="absolute inset-0 w-full h-full mix-blend-overlay opacity-80" preserveAspectRatio="none" viewBox="0 0 200 200">
+          <defs>
+            <filter id={id}>
+              <feTurbulence type="fractalNoise" baseFrequency="0.012 0.9" numOctaves="3" seed="4" />
+              <feColorMatrix values="0 0 0 0 0.25  0 0 0 0 0.15  0 0 0 0 0.05  0 0 0 0.55 0" />
+            </filter>
+          </defs>
+          <rect width="100%" height="100%" filter={`url(#${id})`} />
+        </svg>
+      );
+    case "Stone":
+      return (
+        <svg className="absolute inset-0 w-full h-full mix-blend-soft-light opacity-90" preserveAspectRatio="none" viewBox="0 0 200 200">
+          <defs>
+            <filter id={id}>
+              <feTurbulence type="turbulence" baseFrequency="0.025" numOctaves="4" seed="2" />
+              <feDisplacementMap in="SourceGraphic" scale="6" />
+              <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.5 0" />
+            </filter>
+          </defs>
+          <rect width="100%" height="100%" filter={`url(#${id})`} />
+          <g stroke="rgba(80,75,70,0.35)" fill="none" strokeWidth="0.6">
+            <path d="M-5 60 Q60 40 130 80 T220 70" />
+            <path d="M-5 110 Q70 95 140 130 T220 120" />
+            <path d="M-5 160 Q50 150 120 175 T220 165" />
+          </g>
+        </svg>
+      );
+    case "Metal":
+      return (
+        <svg className="absolute inset-0 w-full h-full mix-blend-overlay opacity-90" preserveAspectRatio="none" viewBox="0 0 200 200">
+          <defs>
+            <filter id={id}>
+              <feTurbulence type="fractalNoise" baseFrequency="0.005 1.4" numOctaves="2" seed="7" />
+              <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.45 0" />
+            </filter>
+            <linearGradient id={`${id}-g`} x1="0" x2="1">
+              <stop offset="0" stopColor="rgba(255,255,255,0.25)" />
+              <stop offset=".5" stopColor="rgba(255,255,255,0)" />
+              <stop offset="1" stopColor="rgba(0,0,0,0.25)" />
+            </linearGradient>
+          </defs>
+          <rect width="100%" height="100%" filter={`url(#${id})`} />
+          <rect width="100%" height="100%" fill={`url(#${id}-g)`} />
+        </svg>
+      );
+    case "Fabric":
+      return (
+        <svg className="absolute inset-0 w-full h-full mix-blend-overlay opacity-95" preserveAspectRatio="none" viewBox="0 0 200 200">
+          <defs>
+            <pattern id={id} width="6" height="6" patternUnits="userSpaceOnUse">
+              <path d="M0 3 H6 M3 0 V6" stroke="rgba(255,255,255,0.18)" strokeWidth="0.6" />
+              <path d="M0 0 L6 6 M6 0 L0 6" stroke="rgba(0,0,0,0.12)" strokeWidth="0.4" />
+            </pattern>
+            <filter id={`${id}-n`}>
+              <feTurbulence baseFrequency="0.9" numOctaves="2" />
+              <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.25 0" />
+            </filter>
+          </defs>
+          <rect width="100%" height="100%" fill={`url(#${id})`} />
+          <rect width="100%" height="100%" filter={`url(#${id}-n)`} />
+        </svg>
+      );
+    case "Glass":
+      return (
+        <svg className="absolute inset-0 w-full h-full mix-blend-screen opacity-70" preserveAspectRatio="none" viewBox="0 0 200 200">
+          <defs>
+            <linearGradient id={id} x1="0" x2="1">
+              {Array.from({ length: 12 }).map((_, i) => (
+                <stop key={i} offset={`${(i / 11) * 100}%`} stopColor={i % 2 ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0)"} />
+              ))}
+            </linearGradient>
+          </defs>
+          <rect width="100%" height="100%" fill={`url(#${id})`} />
+        </svg>
+      );
+    case "Concrete":
+      return (
+        <svg className="absolute inset-0 w-full h-full mix-blend-overlay opacity-90" preserveAspectRatio="none" viewBox="0 0 200 200">
+          <defs>
+            <filter id={id}>
+              <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="9" />
+              <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0" />
+            </filter>
+          </defs>
+          <rect width="100%" height="100%" filter={`url(#${id})`} />
+        </svg>
+      );
+  }
+}
+
 function Materials() {
   const [cat, setCat] = useState<Cat>("All");
   const [q, setQ] = useState("");
@@ -65,7 +162,7 @@ function Materials() {
         <SectionLabel>Materials Library</SectionLabel>
         <h1 className="font-display text-5xl md:text-7xl mb-4 text-balance">A tactile reference.</h1>
         <p className="text-muted-foreground max-w-xl">
-          Sixteen surfaces, six categories. Hover a swatch to read its character.
+          Sixteen surfaces, six categories — each rendered with its own grain, weave, or polish.
         </p>
       </Reveal>
 
@@ -116,7 +213,10 @@ function Materials() {
                   className="absolute inset-0 transition-transform duration-700 group-hover:scale-110"
                   style={{ background: m.bg }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition" />
+                <TextureOverlay cat={m.cat} />
+                {/* sheen on hover */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/0 to-white/20 opacity-0 group-hover:opacity-100 transition duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60" />
                 <span className="absolute top-4 left-4 glass-dark text-warm-white text-[10px] uppercase tracking-[0.2em] px-3 py-1 rounded-full">
                   {m.cat}
                 </span>
