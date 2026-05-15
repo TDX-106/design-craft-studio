@@ -53,9 +53,9 @@ function About() {
 
       <div className="mt-20 grid md:grid-cols-2 gap-6">
         <Reveal>
-          <div className="bg-card border border-border rounded-3xl p-8 h-full">
+          <div className="bg-gradient-dark text-warm-white border border-white/5 rounded-3xl p-8 h-full shadow-elegant">
             <h2 className="font-display text-3xl mb-3">Overview</h2>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-warm-white/70 leading-relaxed">
               The platform combines a portfolio aesthetic with five interactive design tools:
               materials, color theory, lighting, planning, and style exploration. Every page is
               designed with the same care as a printed editorial — typography, rhythm, and
@@ -81,15 +81,15 @@ function About() {
         </Reveal>
 
         <Reveal>
-          <div className="bg-card border border-border rounded-3xl p-8">
+          <div className="bg-gradient-dark text-warm-white border border-white/5 rounded-3xl p-8 shadow-elegant">
             <h2 className="font-display text-3xl mb-5">UI / UX goals</h2>
             <ul className="space-y-3">
               {goals.map((g) => (
                 <li key={g} className="flex items-start gap-3 text-sm">
-                  <span className="mt-0.5 w-5 h-5 rounded-full bg-accent-light text-accent-sage grid place-items-center flex-shrink-0">
+                  <span className="mt-0.5 w-5 h-5 rounded-full bg-white/5 text-accent-pistachio border border-white/10 grid place-items-center flex-shrink-0">
                     <Check size={12} />
                   </span>
-                  <span>{g}</span>
+                  <span className="text-warm-white/80">{g}</span>
                 </li>
               ))}
             </ul>
@@ -97,15 +97,15 @@ function About() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="bg-card border border-border rounded-3xl p-8">
+          <div className="bg-gradient-dark text-warm-white border border-white/5 rounded-3xl p-8 shadow-elegant">
             <h2 className="font-display text-3xl mb-5">Features implemented</h2>
             <ul className="space-y-3">
               {features.map((f) => (
                 <li key={f} className="flex items-start gap-3 text-sm">
-                  <span className="mt-0.5 w-5 h-5 rounded-full bg-accent-light text-accent-sage grid place-items-center flex-shrink-0">
+                  <span className="mt-0.5 w-5 h-5 rounded-full bg-white/5 text-accent-pistachio border border-white/10 grid place-items-center flex-shrink-0">
                     <Check size={12} />
                   </span>
-                  <span>{f}</span>
+                  <span className="text-warm-white/80">{f}</span>
                 </li>
               ))}
             </ul>
@@ -114,12 +114,13 @@ function About() {
       </div>
 
       <Reveal>
-        <div className="mt-20 bg-accent-light/60 border border-border rounded-3xl p-10 text-center">
+        <div className="mt-20 bg-charcoal border border-white/5 shadow-inner rounded-3xl p-10 text-center relative overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(147,180,139,0.1)_0%,transparent_70%)] pointer-events-none" />
           <SectionLabel>Future scope</SectionLabel>
-          <h2 className="font-display text-4xl md:text-5xl mb-8 text-balance">Where it could go next.</h2>
-          <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
+          <h2 className="font-display text-4xl md:text-5xl mb-8 text-balance text-warm-white">Where it could go next.</h2>
+          <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto relative z-10">
             {future.map((f) => (
-              <span key={f} className="bg-card border border-border px-5 py-3 rounded-full text-sm">{f}</span>
+              <span key={f} className="bg-gradient-dark border border-white/10 px-5 py-3 rounded-full text-sm text-warm-white/80 shadow-soft hover:border-accent-pistachio transition-colors cursor-default">{f}</span>
             ))}
           </div>
         </div>

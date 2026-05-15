@@ -42,13 +42,24 @@ export function Navbar() {
             scrolled ? "shadow-soft" : ""
           }`}
         >
-          <Link to="/" className="flex items-center gap-2 group">
-            <span className="w-8 h-8 rounded-lg bg-gradient-accent shadow-glow grid place-items-center text-warm-white font-display text-lg">
-              D
-            </span>
-            <span className="font-display text-lg tracking-tight">
-              Design<span className="text-accent-sage">Craft</span>
-            </span>
+          <Link to="/" className="flex items-center gap-3 group">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-500 group-hover:rotate-90">
+              <rect width="32" height="32" rx="10" fill="url(#paint0_linear)" />
+              <path d="M10 10H16C19.3137 10 22 12.6863 22 16C22 19.3137 19.3137 22 16 22H10V10Z" fill="white" fillOpacity="0.9" />
+              <circle cx="16" cy="16" r="3" fill="#2c2825" />
+              <defs>
+                <linearGradient id="paint0_linear" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#93b48b" />
+                  <stop offset="1" stopColor="#5d7857" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <div className="flex items-center gap-3">
+              <div className="w-px h-5 bg-gradient-to-b from-transparent via-border to-transparent" />
+              <span className="font-display text-xl tracking-tight">
+                Design<span className="text-accent-sage">Craft</span>
+              </span>
+            </div>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1">
@@ -58,14 +69,15 @@ export function Navbar() {
                 <Link
                   key={l.to}
                   to={l.to}
-                  className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors ${
                     active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {active && (
-                    <motion.span
+                    <motion.div
                       layoutId="nav-active"
-                      className="absolute inset-0 bg-accent-light rounded-full -z-10"
+                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent-pistachio rounded-full"
+                      style={{ boxShadow: "0 -2px 10px rgba(147, 180, 139, 0.4)" }}
                       transition={{ type: "spring", stiffness: 380, damping: 32 }}
                     />
                   )}

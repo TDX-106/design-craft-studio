@@ -39,18 +39,20 @@ function Home() {
         ref={heroRef}
         className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-charcoal"
       >
-        {/* parallax photo */}
+        {/* parallax photo with continuous breathing animation */}
         <motion.div
           aria-hidden
           style={{ y: imgY, scale: imgScale }}
           className="absolute inset-0 will-change-transform"
         >
-          <img
+          <motion.img
             src={heroImg}
             alt=""
             width={1920}
             height={1080}
             className="w-full h-full object-cover"
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
           />
         </motion.div>
         {/* gradient overlays */}
@@ -157,16 +159,16 @@ function Home() {
             <Reveal key={f.to} delay={i * 0.06}>
               <Link
                 to={f.to}
-                className="group relative block bg-card rounded-3xl p-7 border border-border hover:border-accent-pistachio transition-all hover:-translate-y-1 hover:shadow-elegant overflow-hidden h-full"
+                className="group relative block bg-gradient-dark text-warm-white grain rounded-3xl p-7 border border-white/5 hover:border-accent-pistachio transition-all hover:-translate-y-1 hover:shadow-glow overflow-hidden h-full"
               >
-                <div className="absolute -top-20 -right-20 w-48 h-48 rounded-full bg-accent-light opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-500" />
+                <div className="absolute -top-20 -right-20 w-48 h-48 rounded-full bg-accent-pistachio/20 opacity-0 group-hover:opacity-100 blur-3xl transition-opacity duration-500" />
                 <div className="relative">
-                  <div className="w-12 h-12 rounded-xl bg-accent-light grid place-items-center text-accent-sage mb-6 group-hover:bg-accent-pistachio group-hover:text-warm-white transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-white/5 grid place-items-center text-accent-sage mb-6 group-hover:bg-accent-pistachio group-hover:text-warm-white transition-colors">
                     <f.icon size={20} />
                   </div>
                   <h3 className="font-display text-2xl mb-2">{f.label}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
-                  <div className="mt-6 inline-flex items-center gap-1 text-sm text-accent-sage opacity-0 group-hover:opacity-100 transition">
+                  <p className="text-sm text-warm-white/60 leading-relaxed">{f.desc}</p>
+                  <div className="mt-6 inline-flex items-center gap-1 text-sm text-accent-pistachio opacity-0 group-hover:opacity-100 transition">
                     Open <ArrowRight size={14} />
                   </div>
                 </div>
