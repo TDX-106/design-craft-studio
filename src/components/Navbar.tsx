@@ -80,8 +80,8 @@ export function Navbar() {
             </svg>
             <div className="flex items-center gap-3">
               <div className="w-px h-5 bg-gradient-to-b from-transparent via-border to-transparent" />
-              <span className="font-sans text-xl tracking-tight font-bold">
-                Design<span className="text-accent-sage font-normal">Craft</span>
+              <span className="font-logo text-2xl tracking-tight font-extrabold">
+                Design<span className="text-accent-sage font-bold">Craft</span>
               </span>
             </div>
           </Link>

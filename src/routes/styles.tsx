@@ -4,6 +4,14 @@ import { useState, useRef } from "react";
 import { X, ArrowRight } from "lucide-react";
 import { PageWrap, Reveal, SectionLabel } from "@/components/PageWrap";
 
+// Import material images for safe Vite bundling
+import microcementImg from "@/assets/materials/microcement.jpg";
+import bambooImg from "@/assets/materials/bamboo.jpg";
+import steelImg from "@/assets/materials/blackened-steel.jpg";
+import juteImg from "@/assets/materials/jute.jpg";
+import walnutImg from "@/assets/materials/walnut.jpg";
+import ashImg from "@/assets/materials/bleached-ash.jpg";
+
 export const Route = createFileRoute("/styles")({
   head: () => ({
     meta: [
@@ -24,6 +32,8 @@ interface Style {
   bg: string;
   accent: string;
   keywords: string[];
+  referenceImg: string;
+  materialImg: string;
 }
 
 const styles: Style[] = [
@@ -31,21 +41,25 @@ const styles: Style[] = [
     name: "Minimalist", tag: "Less, but better.",
     short: "Quiet rooms, intentional objects, generous negative space.",
     long: "A discipline of subtraction. Each object earns its place; surfaces breathe; light becomes the most important material in the room. Clutter is the enemy of calm.",
-    materials: ["White oak", "Linen", "Microcement", "Brushed steel"],
+    materials: ["Microcement", "White oak", "Linen", "Brushed steel"],
     palette: ["#fffdf9", "#e8e0d5", "#7a7068", "#2c2825"],
     bg: "linear-gradient(135deg, #f5f0eb 0%, #e8e0d5 100%)",
-    accent: "#6e9e74", // Sage accent
+    accent: "#6e9e74",
     keywords: ["Restraint", "Space", "Calm"],
+    referenceImg: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop",
+    materialImg: microcementImg,
   },
   {
     name: "Japandi", tag: "Wabi-sabi meets hygge.",
     short: "Japanese restraint with Scandinavian warmth.",
     long: "Low silhouettes, natural fibers, and a deep respect for craft. Imperfection is a feature, not a flaw. Every object carries quiet intention.",
-    materials: ["Charred cedar", "Paper", "Stoneware", "Hemp"],
+    materials: ["Bamboo", "Charred cedar", "Paper", "Stoneware"],
     palette: ["#f5f0eb", "#c4b5a0", "#5a4a3a", "#1a1a1a"],
     bg: "linear-gradient(135deg, #fffdf9 0%, #f5f0eb 100%)",
     accent: "#8b7e6d",
     keywords: ["Wabi-sabi", "Craft", "Nature"],
+    referenceImg: "https://images.unsplash.com/photo-1595514535415-eb108154afed?q=80&w=800&auto=format&fit=crop",
+    materialImg: bambooImg,
   },
   {
     name: "Industrial", tag: "Honest materials.",
@@ -56,16 +70,20 @@ const styles: Style[] = [
     bg: "linear-gradient(135deg, #e8e0d5 0%, #d4c8b8 100%)",
     accent: "#8b6f47",
     keywords: ["Raw", "Honest", "Structure"],
+    referenceImg: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop",
+    materialImg: steelImg,
   },
   {
     name: "Bohemian", tag: "Layered & lived-in.",
     short: "Pattern, plants, and global textures collected over time.",
     long: "Maximalism with intention — vintage rugs over rugs, terracotta, brass, and an ever-changing wall of art. A room that tells stories.",
-    materials: ["Rattan", "Terracotta", "Velvet", "Brass"],
+    materials: ["Jute", "Rattan", "Terracotta", "Velvet"],
     palette: ["#c4694a", "#e8c896", "#3d5a40", "#6b4423"],
     bg: "linear-gradient(135deg, #f5ecd6 0%, #e8c896 100%)",
     accent: "#c4694a",
     keywords: ["Layered", "Global", "Vibrant"],
+    referenceImg: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=800&auto=format&fit=crop",
+    materialImg: juteImg,
   },
   {
     name: "Mid-Century Modern", tag: "Form follows curiosity.",
@@ -76,6 +94,8 @@ const styles: Style[] = [
     bg: "linear-gradient(135deg, #f0ebe3 0%, #e8e0d5 100%)",
     accent: "#d4a544",
     keywords: ["Sculptural", "Optimism", "Warmth"],
+    referenceImg: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?q=80&w=800&auto=format&fit=crop",
+    materialImg: walnutImg,
   },
   {
     name: "Scandinavian", tag: "Bright, simple, kind.",
@@ -86,6 +106,8 @@ const styles: Style[] = [
     bg: "linear-gradient(135deg, #e8f0e6 0%, #d6e3d4 100%)",
     accent: "#6e9e74",
     keywords: ["Hygge", "Function", "Light"],
+    referenceImg: "https://images.unsplash.com/photo-1598928506311-c55dd1b31bb1?q=80&w=800&auto=format&fit=crop",
+    materialImg: ashImg,
   },
 ];
 
@@ -189,7 +211,7 @@ function Styles() {
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative bg-card text-foreground max-w-4xl w-full rounded-[2rem] overflow-hidden shadow-elegant border border-border my-auto"
+              className="relative bg-card text-foreground max-w-5xl w-full rounded-[2rem] overflow-hidden shadow-elegant border border-border my-auto"
             >
               <button
                 onClick={() => setOpen(null)}
@@ -212,6 +234,18 @@ function Styles() {
                       ))}
                     </div>
                   </div>
+                  
+                  {/* Reference Image */}
+                  <div className="mt-10 rounded-2xl overflow-hidden border border-black/5 shadow-sm aspect-[4/3] relative">
+                    <img 
+                      src={open.referenceImg} 
+                      alt={`${open.name} interior reference`} 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-3 right-3 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full">
+                      <p className="text-[9px] uppercase tracking-wider text-white/90">Reference Space</p>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="p-10 md:p-14 flex flex-col justify-center bg-background">
@@ -231,12 +265,25 @@ function Styles() {
 
                   <div>
                     <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-4 font-bold">Key Materials</p>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 mb-8">
                       {open.materials.map(m => (
                         <span key={m} className="text-xs px-4 py-2 rounded-lg bg-muted border border-border text-foreground">
                           {m}
                         </span>
                       ))}
+                    </div>
+                    
+                    {/* Material Image */}
+                    <div className="flex items-center gap-4 p-4 rounded-2xl border border-border bg-card shadow-sm">
+                      <img 
+                        src={open.materialImg} 
+                        alt={`${open.materials[0]} texture`} 
+                        className="w-16 h-16 rounded-xl object-cover shadow-sm border border-border" 
+                      />
+                      <div>
+                        <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-bold mb-1">Signature Material</p>
+                        <p className="text-sm font-medium">{open.materials[0]}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
