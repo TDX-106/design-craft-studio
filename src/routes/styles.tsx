@@ -121,24 +121,24 @@ function StyleCard({ s, index, onClick }: { s: Style; index: number; onClick: ()
         />
 
         <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-          <div className="w-10 h-10 rounded-full bg-white/50 backdrop-blur-md grid place-items-center text-foreground border border-black/5">
+          <div className="w-10 h-10 rounded-full bg-white/50 backdrop-blur-md grid place-items-center text-[#2c2825] border border-black/5">
             <ArrowRight size={16} />
           </div>
         </div>
 
-        <div className="absolute inset-0 p-8 flex flex-col justify-end text-foreground">
+        <div className="absolute inset-0 p-8 flex flex-col justify-end text-[#2c2825]">
           <p className="text-[10px] uppercase tracking-[0.25em] mb-2 font-bold" style={{ color: s.accent }}>{s.tag}</p>
           <h3 className="font-display text-4xl mb-3 leading-tight">{s.name}</h3>
           
           <div className="flex flex-wrap gap-2 mb-4">
             {s.keywords.map(kw => (
-              <span key={kw} className="text-[9px] uppercase tracking-[0.2em] bg-white/40 backdrop-blur px-2.5 py-1 rounded-full border border-black/5 text-foreground/80">
+              <span key={kw} className="text-[9px] uppercase tracking-[0.2em] bg-white/40 backdrop-blur px-2.5 py-1 rounded-full border border-black/5 text-[#2c2825]/80">
                 {kw}
               </span>
             ))}
           </div>
 
-          <p className="text-sm text-muted-foreground leading-relaxed mb-6 line-clamp-2">{s.short}</p>
+          <p className="text-sm text-[#2c2825]/80 leading-relaxed mb-6 line-clamp-2">{s.short}</p>
 
           <div className="flex gap-2 relative z-10">
             {s.palette.map((c) => (
@@ -193,20 +193,20 @@ function Styles() {
             >
               <button
                 onClick={() => setOpen(null)}
-                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/50 backdrop-blur grid place-items-center hover:bg-muted transition z-10 border border-border text-foreground"
+                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/50 backdrop-blur grid place-items-center hover:bg-white/80 transition z-10 border border-black/10 text-[#2c2825]"
               >
                 <X size={18} />
               </button>
 
               <div className="grid md:grid-cols-2">
                 <div className="relative p-10 md:p-14 flex flex-col justify-center border-b md:border-b-0 md:border-r border-border" style={{ background: open.bg }}>
-                  <div className="relative z-10">
+                  <div className="relative z-10 text-[#2c2825]">
                     <p className="text-xs uppercase tracking-[0.25em] mb-3 font-bold" style={{ color: open.accent }}>{open.tag}</p>
                     <h2 className="font-display text-5xl mb-6">{open.name}</h2>
-                    <p className="text-lg text-foreground/80 leading-relaxed">{open.short}</p>
+                    <p className="text-lg text-[#2c2825]/80 leading-relaxed">{open.short}</p>
                     <div className="flex flex-wrap gap-2 mt-8">
                       {open.keywords.map(kw => (
-                        <span key={kw} className="text-[10px] uppercase tracking-[0.2em] bg-white/40 border border-border px-3 py-1.5 rounded-full text-foreground/90">
+                        <span key={kw} className="text-[10px] uppercase tracking-[0.2em] bg-white/40 border border-black/10 px-3 py-1.5 rounded-full text-[#2c2825]/90">
                           {kw}
                         </span>
                       ))}

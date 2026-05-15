@@ -1,7 +1,7 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 
 const links = [
   { to: "/", label: "Home" },
@@ -16,7 +16,31 @@ const links = [
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    const isDark = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      setTheme('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      setTheme('light');
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      document.documentElement.classList.add('dark');
+      localStorage.theme = 'dark';
+      setTheme('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.theme = 'light';
+      setTheme('light');
+    }
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -56,8 +80,8 @@ export function Navbar() {
             </svg>
             <div className="flex items-center gap-3">
               <div className="w-px h-5 bg-gradient-to-b from-transparent via-border to-transparent" />
-              <span className="font-display text-xl tracking-tight">
-                Design<span className="text-accent-sage">Craft</span>
+              <span className="font-sans text-xl tracking-tight font-bold">
+                Design<span className="text-accent-sage font-normal">Craft</span>
               </span>
             </div>
           </Link>
@@ -87,20 +111,38 @@ export function Navbar() {
             })}
           </nav>
 
-          <Link
-            to="/planner"
-            className="hidden lg:inline-flex items-center gap-2 bg-charcoal text-warm-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-soft-black transition-all hover:shadow-glow"
-          >
-            Try Planner
-          </Link>
+          <div className="hidden lg:flex items-center gap-3">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full hover:bg-accent-light transition-colors text-foreground"
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <Link
+              to="/planner"
+              className="inline-flex items-center gap-2 bg-charcoal text-warm-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-soft-black transition-all hover:shadow-glow"
+            >
+              Try Planner
+            </Link>
+          </div>
 
-          <button
-            onClick={() => setOpen((o) => !o)}
-            className="lg:hidden p-2 rounded-lg hover:bg-accent-light transition"
-            aria-label="Toggle menu"
-          >
-            {open ? <X size={20} /> : <Menu size={20} />}
-          </button>
+          <div className="lg:hidden flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full hover:bg-accent-light transition-colors text-foreground"
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <button
+              onClick={() => setOpen((o) => !o)}
+              className="p-2 rounded-lg hover:bg-accent-light transition"
+              aria-label="Toggle menu"
+            >
+              {open ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
 
         <AnimatePresence>

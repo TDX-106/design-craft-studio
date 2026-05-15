@@ -211,12 +211,12 @@ function Materials() {
                     alt={m.name} 
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <span className="absolute top-4 left-4 bg-white/80 backdrop-blur text-foreground text-[10px] uppercase tracking-[0.2em] px-3 py-1 rounded-full border border-black/5 shadow-sm">
+                  <span className="absolute top-4 left-4 bg-white/80 backdrop-blur text-[#2c2825] text-[10px] uppercase tracking-[0.2em] px-3 py-1 rounded-full border border-black/5 shadow-sm">
                     {m.cat}
                   </span>
 
                   <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/80 backdrop-blur grid place-items-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all border border-black/5 shadow-sm">
-                    <Maximize2 size={14} className="text-foreground" />
+                    <Maximize2 size={14} className="text-[#2c2825]" />
                   </div>
                 </div>
                 <div className="p-5">
