@@ -67,6 +67,29 @@
   --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 }
 
+.dark {
+  --background: #0f0f0f;
+  --background-secondary: #1a1a1a;
+  --card: #141414;
+  --foreground: #faf7f2;
+  --muted-foreground: #a09890;
+  --accent-pistachio: #7aa172;
+  --accent-sage: #5c8762;
+  --accent-light: #2c332b;
+  --border: #2a2825;
+  --charcoal: #f5f0eb;
+  --soft-black: #e8e0d5;
+  --warm-white: #0f0f0f;
+  --destructive: #db6c60;
+
+  --gradient-hero: radial-gradient(ellipse at top left, #1a221a 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, #201b16 0%, transparent 60%),
+    linear-gradient(135deg, #0f0f0f 0%, #151515 100%);
+  --shadow-soft: 0 4px 24px -8px rgba(0, 0, 0, 0.4);
+  --shadow-elegant: 0 24px 60px -20px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 40px rgba(122, 161, 114, 0.35);
+}
+
 @layer base {
   @font-face {
     font-family: "Playfair Display";
@@ -115,16 +138,21 @@
   .shadow-glow { box-shadow: var(--shadow-glow); }
 
   .glass {
-    background: rgba(255, 253, 249, 0.65);
+    background: rgba(var(--color-card), 0.65);
     backdrop-filter: blur(16px) saturate(140%);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
-    border: 1px solid rgba(232, 224, 213, 0.6);
+    border: 1px solid rgba(var(--color-border), 0.6);
   }
 
   .glass-dark {
     background: rgba(15, 15, 15, 0.55);
     backdrop-filter: blur(16px) saturate(140%);
     border: 1px solid rgba(245, 240, 235, 0.08);
+  }
+
+  .dark .glass {
+    background: rgba(20, 20, 20, 0.65);
+    border: 1px solid rgba(42, 40, 37, 0.6);
   }
 
   .grain::after {
