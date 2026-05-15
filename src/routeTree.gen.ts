@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PlannerRouteImport } from './routes/planner'
 import { Route as MaterialsRouteImport } from './routes/materials'
 import { Route as LightingRouteImport } from './routes/lighting'
 import { Route as ColorsRouteImport } from './routes/colors'
 import { Route as IndexRouteImport } from './routes/index'
 
+const PlannerRoute = PlannerRouteImport.update({
+  id: '/planner',
+  path: '/planner',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MaterialsRoute = MaterialsRouteImport.update({
   id: '/materials',
   path: '/materials',
@@ -40,12 +46,14 @@ export interface FileRoutesByFullPath {
   '/colors': typeof ColorsRoute
   '/lighting': typeof LightingRoute
   '/materials': typeof MaterialsRoute
+  '/planner': typeof PlannerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/colors': typeof ColorsRoute
   '/lighting': typeof LightingRoute
   '/materials': typeof MaterialsRoute
+  '/planner': typeof PlannerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,14 @@ export interface FileRoutesById {
   '/colors': typeof ColorsRoute
   '/lighting': typeof LightingRoute
   '/materials': typeof MaterialsRoute
+  '/planner': typeof PlannerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/colors' | '/lighting' | '/materials'
+  fullPaths: '/' | '/colors' | '/lighting' | '/materials' | '/planner'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/colors' | '/lighting' | '/materials'
-  id: '__root__' | '/' | '/colors' | '/lighting' | '/materials'
+  to: '/' | '/colors' | '/lighting' | '/materials' | '/planner'
+  id: '__root__' | '/' | '/colors' | '/lighting' | '/materials' | '/planner'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,10 +76,18 @@ export interface RootRouteChildren {
   ColorsRoute: typeof ColorsRoute
   LightingRoute: typeof LightingRoute
   MaterialsRoute: typeof MaterialsRoute
+  PlannerRoute: typeof PlannerRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/planner': {
+      id: '/planner'
+      path: '/planner'
+      fullPath: '/planner'
+      preLoaderRoute: typeof PlannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/materials': {
       id: '/materials'
       path: '/materials'
@@ -107,6 +124,7 @@ const rootRouteChildren: RootRouteChildren = {
   ColorsRoute: ColorsRoute,
   LightingRoute: LightingRoute,
   MaterialsRoute: MaterialsRoute,
+  PlannerRoute: PlannerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
