@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as StylesRouteImport } from './routes/styles'
 import { Route as PlannerRouteImport } from './routes/planner'
 import { Route as MaterialsRouteImport } from './routes/materials'
 import { Route as LightingRouteImport } from './routes/lighting'
 import { Route as ColorsRouteImport } from './routes/colors'
 import { Route as IndexRouteImport } from './routes/index'
 
+const StylesRoute = StylesRouteImport.update({
+  id: '/styles',
+  path: '/styles',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlannerRoute = PlannerRouteImport.update({
   id: '/planner',
   path: '/planner',
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/lighting': typeof LightingRoute
   '/materials': typeof MaterialsRoute
   '/planner': typeof PlannerRoute
+  '/styles': typeof StylesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/lighting': typeof LightingRoute
   '/materials': typeof MaterialsRoute
   '/planner': typeof PlannerRoute
+  '/styles': typeof StylesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,27 @@ export interface FileRoutesById {
   '/lighting': typeof LightingRoute
   '/materials': typeof MaterialsRoute
   '/planner': typeof PlannerRoute
+  '/styles': typeof StylesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/colors' | '/lighting' | '/materials' | '/planner'
+  fullPaths:
+    | '/'
+    | '/colors'
+    | '/lighting'
+    | '/materials'
+    | '/planner'
+    | '/styles'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/colors' | '/lighting' | '/materials' | '/planner'
-  id: '__root__' | '/' | '/colors' | '/lighting' | '/materials' | '/planner'
+  to: '/' | '/colors' | '/lighting' | '/materials' | '/planner' | '/styles'
+  id:
+    | '__root__'
+    | '/'
+    | '/colors'
+    | '/lighting'
+    | '/materials'
+    | '/planner'
+    | '/styles'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,10 +99,18 @@ export interface RootRouteChildren {
   LightingRoute: typeof LightingRoute
   MaterialsRoute: typeof MaterialsRoute
   PlannerRoute: typeof PlannerRoute
+  StylesRoute: typeof StylesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/styles': {
+      id: '/styles'
+      path: '/styles'
+      fullPath: '/styles'
+      preLoaderRoute: typeof StylesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/planner': {
       id: '/planner'
       path: '/planner'
@@ -125,7 +155,18 @@ const rootRouteChildren: RootRouteChildren = {
   LightingRoute: LightingRoute,
   MaterialsRoute: MaterialsRoute,
   PlannerRoute: PlannerRoute,
+  StylesRoute: StylesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
