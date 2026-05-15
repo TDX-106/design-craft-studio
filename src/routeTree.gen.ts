@@ -14,6 +14,7 @@ import { Route as PlannerRouteImport } from './routes/planner'
 import { Route as MaterialsRouteImport } from './routes/materials'
 import { Route as LightingRouteImport } from './routes/lighting'
 import { Route as ColorsRouteImport } from './routes/colors'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
 const StylesRoute = StylesRouteImport.update({
@@ -41,6 +42,11 @@ const ColorsRoute = ColorsRouteImport.update({
   path: '/colors',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -49,6 +55,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/colors': typeof ColorsRoute
   '/lighting': typeof LightingRoute
   '/materials': typeof MaterialsRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/colors': typeof ColorsRoute
   '/lighting': typeof LightingRoute
   '/materials': typeof MaterialsRoute
@@ -66,6 +74,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/colors': typeof ColorsRoute
   '/lighting': typeof LightingRoute
   '/materials': typeof MaterialsRoute
@@ -76,16 +85,25 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/colors'
     | '/lighting'
     | '/materials'
     | '/planner'
     | '/styles'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/colors' | '/lighting' | '/materials' | '/planner' | '/styles'
+  to:
+    | '/'
+    | '/about'
+    | '/colors'
+    | '/lighting'
+    | '/materials'
+    | '/planner'
+    | '/styles'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/colors'
     | '/lighting'
     | '/materials'
@@ -95,6 +113,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   ColorsRoute: typeof ColorsRoute
   LightingRoute: typeof LightingRoute
   MaterialsRoute: typeof MaterialsRoute
@@ -139,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ColorsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -151,6 +177,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   ColorsRoute: ColorsRoute,
   LightingRoute: LightingRoute,
   MaterialsRoute: MaterialsRoute,
