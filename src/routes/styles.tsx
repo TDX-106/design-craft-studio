@@ -33,8 +33,8 @@ const styles: Style[] = [
     long: "A discipline of subtraction. Each object earns its place; surfaces breathe; light becomes the most important material in the room. Clutter is the enemy of calm.",
     materials: ["White oak", "Linen", "Microcement", "Brushed steel"],
     palette: ["#fffdf9", "#e8e0d5", "#7a7068", "#2c2825"],
-    bg: "linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%)",
-    accent: "#e8e0d5",
+    bg: "linear-gradient(135deg, #f5f0eb 0%, #e8e0d5 100%)",
+    accent: "#6e9e74", // Sage accent
     keywords: ["Restraint", "Space", "Calm"],
   },
   {
@@ -43,8 +43,8 @@ const styles: Style[] = [
     long: "Low silhouettes, natural fibers, and a deep respect for craft. Imperfection is a feature, not a flaw. Every object carries quiet intention.",
     materials: ["Charred cedar", "Paper", "Stoneware", "Hemp"],
     palette: ["#f5f0eb", "#c4b5a0", "#5a4a3a", "#1a1a1a"],
-    bg: "linear-gradient(135deg, #3d2f25 0%, #1f1813 100%)",
-    accent: "#c4b5a0",
+    bg: "linear-gradient(135deg, #fffdf9 0%, #f5f0eb 100%)",
+    accent: "#8b7e6d",
     keywords: ["Wabi-sabi", "Craft", "Nature"],
   },
   {
@@ -53,8 +53,8 @@ const styles: Style[] = [
     long: "A loft sensibility that celebrates structure — pipes overhead, factory windows, leather worn well. Nothing is hidden; everything is honest.",
     materials: ["Blackened steel", "Reclaimed brick", "Concrete", "Aged leather"],
     palette: ["#3d3d3d", "#8b6f47", "#c4a578", "#1a1a1a"],
-    bg: "linear-gradient(135deg, #2b2b2b 0%, #111 100%)",
-    accent: "#c4a578",
+    bg: "linear-gradient(135deg, #e8e0d5 0%, #d4c8b8 100%)",
+    accent: "#8b6f47",
     keywords: ["Raw", "Honest", "Structure"],
   },
   {
@@ -63,8 +63,8 @@ const styles: Style[] = [
     long: "Maximalism with intention — vintage rugs over rugs, terracotta, brass, and an ever-changing wall of art. A room that tells stories.",
     materials: ["Rattan", "Terracotta", "Velvet", "Brass"],
     palette: ["#c4694a", "#e8c896", "#3d5a40", "#6b4423"],
-    bg: "linear-gradient(135deg, #4a2c21 0%, #2a1610 100%)",
-    accent: "#e8c896",
+    bg: "linear-gradient(135deg, #f5ecd6 0%, #e8c896 100%)",
+    accent: "#c4694a",
     keywords: ["Layered", "Global", "Vibrant"],
   },
   {
@@ -73,7 +73,7 @@ const styles: Style[] = [
     long: "1950s clarity — clean lines paired with sculptural confidence. Saarinen, Eames, Wegner. Optimism expressed in furniture.",
     materials: ["Walnut", "Tweed", "Brass", "Bouclé"],
     palette: ["#6b4423", "#d4a544", "#3d5a40", "#f5f0eb"],
-    bg: "linear-gradient(135deg, #3d2f25 0%, #1f1813 100%)",
+    bg: "linear-gradient(135deg, #f0ebe3 0%, #e8e0d5 100%)",
     accent: "#d4a544",
     keywords: ["Sculptural", "Optimism", "Warmth"],
   },
@@ -83,8 +83,8 @@ const styles: Style[] = [
     long: "Functional democracy in design. Surfaces are honest; wool throws are everywhere; nothing competes. A room that feels like a deep breath.",
     materials: ["Bleached ash", "Wool", "Soft cotton", "White stoneware"],
     palette: ["#fffdf9", "#e8dcc4", "#a8c4ce", "#2c2825"],
-    bg: "linear-gradient(135deg, #2a343a 0%, #151a1d 100%)",
-    accent: "#a8c4ce",
+    bg: "linear-gradient(135deg, #e8f0e6 0%, #d6e3d4 100%)",
+    accent: "#6e9e74",
     keywords: ["Hygge", "Function", "Light"],
   },
 ];
@@ -109,46 +109,42 @@ function StyleCard({ s, index, onClick }: { s: Style; index: number; onClick: ()
         whileHover={{ y: -8, scale: 1.01 }}
         onMouseMove={handleMouseMove}
         onClick={onClick}
-        className="group relative w-full text-left h-[420px] rounded-3xl overflow-hidden border border-white/5 shadow-elegant hover:shadow-glow transition-all cursor-pointer"
+        className="group relative w-full text-left h-[420px] rounded-3xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-all cursor-pointer"
         style={{ background: s.bg }}
       >
-        <div className="absolute inset-0 grain opacity-40" />
-        
         {/* Parallax Hover Glow */}
         <motion.div
           className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           style={{
-            background: `radial-gradient(circle 300px at ${mouse.x * 100}% ${mouse.y * 100}%, ${s.accent}20, transparent)`,
+            background: `radial-gradient(circle 300px at ${mouse.x * 100}% ${mouse.y * 100}%, ${s.accent}15, transparent)`,
           }}
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
         <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-          <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md grid place-items-center text-warm-white border border-white/20">
+          <div className="w-10 h-10 rounded-full bg-white/50 backdrop-blur-md grid place-items-center text-foreground border border-black/5">
             <ArrowRight size={16} />
           </div>
         </div>
 
-        <div className="absolute inset-0 p-8 flex flex-col justify-end text-warm-white">
-          <p className="text-[10px] uppercase tracking-[0.25em] mb-2" style={{ color: s.accent }}>{s.tag}</p>
-          <h3 className="font-display text-4xl mb-3 leading-tight drop-shadow-md">{s.name}</h3>
+        <div className="absolute inset-0 p-8 flex flex-col justify-end text-foreground">
+          <p className="text-[10px] uppercase tracking-[0.25em] mb-2 font-bold" style={{ color: s.accent }}>{s.tag}</p>
+          <h3 className="font-display text-4xl mb-3 leading-tight">{s.name}</h3>
           
           <div className="flex flex-wrap gap-2 mb-4">
             {s.keywords.map(kw => (
-              <span key={kw} className="text-[9px] uppercase tracking-[0.2em] bg-white/10 backdrop-blur px-2.5 py-1 rounded-full border border-white/10">
+              <span key={kw} className="text-[9px] uppercase tracking-[0.2em] bg-white/40 backdrop-blur px-2.5 py-1 rounded-full border border-black/5 text-foreground/80">
                 {kw}
               </span>
             ))}
           </div>
 
-          <p className="text-sm text-warm-white/70 leading-relaxed mb-6 line-clamp-2">{s.short}</p>
+          <p className="text-sm text-muted-foreground leading-relaxed mb-6 line-clamp-2">{s.short}</p>
 
           <div className="flex gap-2 relative z-10">
             {s.palette.map((c) => (
               <div 
                 key={c} 
-                className="w-8 h-8 rounded-full border-2 border-charcoal shadow-sm transition-transform group-hover:scale-110" 
+                className="w-8 h-8 rounded-full border border-border shadow-sm transition-transform group-hover:scale-110" 
                 style={{ background: c }} 
               />
             ))}
@@ -185,7 +181,7 @@ function Styles() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setOpen(null)}
-            className="fixed inset-0 z-[70] bg-black/80 backdrop-blur-sm grid place-items-center p-4 lg:p-10 overflow-y-auto"
+            className="fixed inset-0 z-[70] bg-foreground/10 backdrop-blur-sm grid place-items-center p-4 lg:p-10 overflow-y-auto"
           >
             <motion.div
               initial={{ scale: 0.95, y: 20, opacity: 0 }}
@@ -193,25 +189,24 @@ function Styles() {
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative bg-gradient-dark text-warm-white max-w-4xl w-full rounded-[2rem] overflow-hidden shadow-glow border border-white/10 my-auto"
+              className="relative bg-card text-foreground max-w-4xl w-full rounded-[2rem] overflow-hidden shadow-elegant border border-border my-auto"
             >
               <button
                 onClick={() => setOpen(null)}
-                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 backdrop-blur grid place-items-center hover:bg-white/20 transition z-10 border border-white/20"
+                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/50 backdrop-blur grid place-items-center hover:bg-muted transition z-10 border border-border text-foreground"
               >
                 <X size={18} />
               </button>
 
               <div className="grid md:grid-cols-2">
-                <div className="relative p-10 md:p-14 flex flex-col justify-center border-b md:border-b-0 md:border-r border-white/10" style={{ background: open.bg }}>
-                  <div className="absolute inset-0 grain opacity-50" />
+                <div className="relative p-10 md:p-14 flex flex-col justify-center border-b md:border-b-0 md:border-r border-border" style={{ background: open.bg }}>
                   <div className="relative z-10">
-                    <p className="text-xs uppercase tracking-[0.25em] mb-3" style={{ color: open.accent }}>{open.tag}</p>
+                    <p className="text-xs uppercase tracking-[0.25em] mb-3 font-bold" style={{ color: open.accent }}>{open.tag}</p>
                     <h2 className="font-display text-5xl mb-6">{open.name}</h2>
-                    <p className="text-lg text-warm-white/80 leading-relaxed">{open.short}</p>
+                    <p className="text-lg text-foreground/80 leading-relaxed">{open.short}</p>
                     <div className="flex flex-wrap gap-2 mt-8">
                       {open.keywords.map(kw => (
-                        <span key={kw} className="text-[10px] uppercase tracking-[0.2em] bg-black/30 border border-white/10 px-3 py-1.5 rounded-full text-warm-white/90">
+                        <span key={kw} className="text-[10px] uppercase tracking-[0.2em] bg-white/40 border border-border px-3 py-1.5 rounded-full text-foreground/90">
                           {kw}
                         </span>
                       ))}
@@ -219,26 +214,26 @@ function Styles() {
                   </div>
                 </div>
 
-                <div className="p-10 md:p-14 flex flex-col justify-center bg-charcoal/50">
-                  <p className="text-sm text-warm-white/70 leading-loose mb-10">{open.long}</p>
+                <div className="p-10 md:p-14 flex flex-col justify-center bg-background">
+                  <p className="text-sm text-muted-foreground leading-loose mb-10">{open.long}</p>
                   
                   <div className="mb-8">
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-warm-white/50 mb-4">Color Palette</p>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-4 font-bold">Color Palette</p>
                     <div className="flex gap-3">
                       {open.palette.map(c => (
                         <div key={c} className="flex-1">
-                          <div className="w-full h-12 rounded-lg shadow-inner mb-2 border border-white/5" style={{ background: c }} />
-                          <p className="text-[9px] uppercase tracking-wider text-warm-white/50 font-mono text-center">{c}</p>
+                          <div className="w-full h-12 rounded-lg shadow-sm mb-2 border border-border" style={{ background: c }} />
+                          <p className="text-[9px] uppercase tracking-wider text-muted-foreground font-mono text-center">{c}</p>
                         </div>
                       ))}
                     </div>
                   </div>
 
                   <div>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-warm-white/50 mb-4">Key Materials</p>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-4 font-bold">Key Materials</p>
                     <div className="flex flex-wrap gap-2">
                       {open.materials.map(m => (
-                        <span key={m} className="text-xs px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-warm-white/80">
+                        <span key={m} className="text-xs px-4 py-2 rounded-lg bg-muted border border-border text-foreground">
                           {m}
                         </span>
                       ))}

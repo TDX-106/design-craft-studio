@@ -26,7 +26,7 @@ interface FurnitureType {
   icon: React.FC<{ w: number; h: number; rot: number }>;
 }
 
-// Clean, CAD-style wireframe SVGs
+// Clean, CAD-style wireframe SVGs for LIGHT theme
 function SofaIcon({ w, h }: { w: number; h: number }) {
   const W = w * 100, H = h * 100;
   return (
@@ -44,11 +44,11 @@ function BedIcon({ w, h }: { w: number; h: number }) {
   const W = w * 100, H = h * 100;
   return (
     <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%" className="absolute inset-0">
-      <rect x="2" y="2" width={W - 4} height={H - 4} rx="4" fill="rgba(255,255,255,0.05)" stroke="#fff" strokeWidth="2" strokeDasharray="4 2" />
-      <rect x="4" y="4" width={W - 8} height={H * 0.15} fill="none" stroke="#fff" strokeWidth="1.5" />
-      <rect x="10" y={H * 0.22} width={W * 0.35} height={H * 0.18} rx="4" fill="none" stroke="#fff" strokeWidth="1" />
-      <rect x={W * 0.55} y={H * 0.22} width={W * 0.35} height={H * 0.18} rx="4" fill="none" stroke="#fff" strokeWidth="1" />
-      <line x1="2" y1={H * 0.45} x2={W - 2} y2={H * 0.45} stroke="#fff" strokeWidth="1.5" />
+      <rect x="2" y="2" width={W - 4} height={H - 4} rx="4" fill="rgba(110,158,116,0.05)" stroke="#6e9e74" strokeWidth="2" strokeDasharray="4 2" />
+      <rect x="4" y="4" width={W - 8} height={H * 0.15} fill="none" stroke="#6e9e74" strokeWidth="1.5" />
+      <rect x="10" y={H * 0.22} width={W * 0.35} height={H * 0.18} rx="4" fill="none" stroke="#6e9e74" strokeWidth="1" />
+      <rect x={W * 0.55} y={H * 0.22} width={W * 0.35} height={H * 0.18} rx="4" fill="none" stroke="#6e9e74" strokeWidth="1" />
+      <line x1="2" y1={H * 0.45} x2={W - 2} y2={H * 0.45} stroke="#6e9e74" strokeWidth="1.5" />
     </svg>
   );
 }
@@ -57,9 +57,9 @@ function DeskIcon({ w, h }: { w: number; h: number }) {
   const W = w * 100, H = h * 100;
   return (
     <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%" className="absolute inset-0">
-      <rect x="2" y="2" width={W - 4} height={H - 4} fill="rgba(150,180,220,0.1)" stroke="#96b4dc" strokeWidth="2" />
-      <rect x="10" y="6" width={W * 0.5} height={H - 12} fill="none" stroke="#96b4dc" strokeWidth="1" />
-      <rect x={W * 0.65} y="6" width={W * 0.25} height={H * 0.5} fill="none" stroke="#96b4dc" strokeWidth="1" />
+      <rect x="2" y="2" width={W - 4} height={H - 4} fill="rgba(150,180,220,0.1)" stroke="#7fa3cf" strokeWidth="2" />
+      <rect x="10" y="6" width={W * 0.5} height={H - 12} fill="none" stroke="#7fa3cf" strokeWidth="1" />
+      <rect x={W * 0.65} y="6" width={W * 0.25} height={H * 0.5} fill="none" stroke="#7fa3cf" strokeWidth="1" />
     </svg>
   );
 }
@@ -68,10 +68,10 @@ function WardrobeIcon({ w, h }: { w: number; h: number }) {
   const W = w * 100, H = h * 100;
   return (
     <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%" className="absolute inset-0">
-      <rect x="2" y="2" width={W - 4} height={H - 4} fill="rgba(200,180,150,0.1)" stroke="#c8b496" strokeWidth="2" />
-      <line x1={W / 2} y1="2" x2={W / 2} y2={H - 2} stroke="#c8b496" strokeWidth="1.5" />
-      <line x1={W * 0.2} y1={H * 0.2} x2={W * 0.8} y2={H * 0.8} stroke="#c8b496" strokeWidth="0.5" strokeDasharray="2 2" />
-      <line x1={W * 0.8} y1={H * 0.2} x2={W * 0.2} y2={H * 0.8} stroke="#c8b496" strokeWidth="0.5" strokeDasharray="2 2" />
+      <rect x="2" y="2" width={W - 4} height={H - 4} fill="rgba(200,180,150,0.1)" stroke="#b8a17d" strokeWidth="2" />
+      <line x1={W / 2} y1="2" x2={W / 2} y2={H - 2} stroke="#b8a17d" strokeWidth="1.5" />
+      <line x1={W * 0.2} y1={H * 0.2} x2={W * 0.8} y2={H * 0.8} stroke="#b8a17d" strokeWidth="0.5" strokeDasharray="2 2" />
+      <line x1={W * 0.8} y1={H * 0.2} x2={W * 0.2} y2={H * 0.8} stroke="#b8a17d" strokeWidth="0.5" strokeDasharray="2 2" />
     </svg>
   );
 }
@@ -80,13 +80,13 @@ function DiningIcon({ w, h }: { w: number; h: number }) {
   const W = w * 100, H = h * 100;
   return (
     <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%" className="absolute inset-0">
-      <rect x={W * 0.15} y={H * 0.15} width={W * 0.7} height={H * 0.7} rx="4" fill="none" stroke="#e8c896" strokeWidth="2" />
-      <rect x={W * 0.3} y="2" width={W * 0.15} height={H * 0.1} fill="none" stroke="#e8c896" strokeWidth="1" />
-      <rect x={W * 0.55} y="2" width={W * 0.15} height={H * 0.1} fill="none" stroke="#e8c896" strokeWidth="1" />
-      <rect x={W * 0.3} y={H - H * 0.12} width={W * 0.15} height={H * 0.1} fill="none" stroke="#e8c896" strokeWidth="1" />
-      <rect x={W * 0.55} y={H - H * 0.12} width={W * 0.15} height={H * 0.1} fill="none" stroke="#e8c896" strokeWidth="1" />
-      <rect x="2" y={H * 0.4} width={W * 0.1} height={H * 0.2} fill="none" stroke="#e8c896" strokeWidth="1" />
-      <rect x={W - W * 0.12} y={H * 0.4} width={W * 0.1} height={H * 0.2} fill="none" stroke="#e8c896" strokeWidth="1" />
+      <rect x={W * 0.15} y={H * 0.15} width={W * 0.7} height={H * 0.7} rx="4" fill="none" stroke="#cfa869" strokeWidth="2" />
+      <rect x={W * 0.3} y="2" width={W * 0.15} height={H * 0.1} fill="none" stroke="#cfa869" strokeWidth="1" />
+      <rect x={W * 0.55} y="2" width={W * 0.15} height={H * 0.1} fill="none" stroke="#cfa869" strokeWidth="1" />
+      <rect x={W * 0.3} y={H - H * 0.12} width={W * 0.15} height={H * 0.1} fill="none" stroke="#cfa869" strokeWidth="1" />
+      <rect x={W * 0.55} y={H - H * 0.12} width={W * 0.15} height={H * 0.1} fill="none" stroke="#cfa869" strokeWidth="1" />
+      <rect x="2" y={H * 0.4} width={W * 0.1} height={H * 0.2} fill="none" stroke="#cfa869" strokeWidth="1" />
+      <rect x={W - W * 0.12} y={H * 0.4} width={W * 0.1} height={H * 0.2} fill="none" stroke="#cfa869" strokeWidth="1" />
     </svg>
   );
 }
@@ -95,8 +95,8 @@ function CoffeeIcon({ w, h }: { w: number; h: number }) {
   const W = w * 100, H = h * 100;
   return (
     <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%" className="absolute inset-0">
-      <circle cx={W / 2} cy={H / 2} r={W / 2 - 4} fill="rgba(200,200,200,0.05)" stroke="#ccc" strokeWidth="2" />
-      <circle cx={W / 2} cy={H / 2} r={W / 4} fill="none" stroke="#ccc" strokeWidth="1" strokeDasharray="2 2" />
+      <circle cx={W / 2} cy={H / 2} r={W / 2 - 4} fill="rgba(122,112,104,0.05)" stroke="#7a7068" strokeWidth="2" />
+      <circle cx={W / 2} cy={H / 2} r={W / 4} fill="none" stroke="#7a7068" strokeWidth="1" strokeDasharray="2 2" />
     </svg>
   );
 }
@@ -197,7 +197,7 @@ function Planner() {
             <button
               key={p.label}
               onClick={() => loadPreset(p)}
-              className="px-4 py-2 bg-gradient-dark border border-white/10 rounded-xl text-warm-white text-sm hover:border-accent-pistachio transition flex items-center gap-2"
+              className="px-4 py-2 bg-card border border-border rounded-xl text-foreground text-sm hover:border-accent-pistachio transition flex items-center gap-2 shadow-sm"
             >
               <span>{p.icon}</span> {p.label}
             </button>
@@ -208,50 +208,50 @@ function Planner() {
       <Reveal delay={0.15}>
         <div className="mt-6 grid lg:grid-cols-[240px_1fr] gap-6">
           {/* SIDEBAR */}
-          <div className="bg-gradient-dark border border-white/5 shadow-elegant rounded-3xl p-5 h-fit lg:sticky lg:top-28">
-            <h3 className="font-display text-warm-white text-lg mb-4 flex items-center gap-2"><Grid3X3 size={16}/> Wireframes</h3>
+          <div className="bg-card border border-border shadow-soft rounded-3xl p-5 h-fit lg:sticky lg:top-28">
+            <h3 className="font-display text-foreground text-lg mb-4 flex items-center gap-2"><Grid3X3 size={16}/> Wireframes</h3>
             <div className="space-y-2">
               {TYPES.map((t) => (
                 <div
                   key={t.id}
                   draggable
                   onDragStart={(e) => onDragStart(e, t.id, "palette")}
-                  className="flex items-center gap-3 p-3 rounded-xl border border-white/5 bg-charcoal hover:border-accent-pistachio cursor-grab active:cursor-grabbing transition"
+                  className="flex items-center gap-3 p-3 rounded-xl border border-border bg-background hover:border-accent-pistachio cursor-grab active:cursor-grabbing transition"
                 >
-                  <div className="relative w-10 h-10 flex-shrink-0 bg-black/40 rounded-md">
+                  <div className="relative w-10 h-10 flex-shrink-0 bg-accent-light/50 rounded-md">
                     <t.icon w={1} h={1} rot={0} />
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-warm-white">{t.name}</div>
+                    <div className="text-sm font-medium text-foreground">{t.name}</div>
                     <div className="text-[10px] text-muted-foreground font-mono">{(t.w * CELL_M).toFixed(1)}m × {(t.h * CELL_M).toFixed(1)}m</div>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-6 pt-5 border-t border-white/10">
+            <div className="mt-6 pt-5 border-t border-border">
               <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span>Room</span>
                 <span className="font-mono">{(COLS * CELL_M).toFixed(1)} × {(ROWS * CELL_M).toFixed(1)}m</span>
               </div>
               <div className="flex justify-between text-xs text-muted-foreground mb-2">
                 <span>Area Usage</span>
-                <span className="text-warm-white font-mono">
+                <span className="text-foreground font-mono">
                   {(usedCells * CELL_M * CELL_M).toFixed(1)} / {(COLS * ROWS * CELL_M * CELL_M).toFixed(1)}m²
                 </span>
               </div>
-              <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+              <div className="h-1 bg-muted rounded-full overflow-hidden border border-border">
                 <motion.div className="h-full bg-accent-pistachio" animate={{ width: `${(usedCells / (COLS * ROWS)) * 100}%` }} />
               </div>
             </div>
 
             <div className="mt-6 flex flex-col gap-2">
               {selected && (
-                <button onClick={rotate} className="w-full py-2 bg-accent-light text-accent-sage rounded-xl text-sm hover:bg-accent-pistachio hover:text-charcoal transition font-medium flex justify-center items-center gap-2">
+                <button onClick={rotate} className="w-full py-2 bg-accent-light text-accent-sage border border-accent-pistachio/30 rounded-xl text-sm hover:bg-accent-pistachio hover:text-white transition font-medium flex justify-center items-center gap-2">
                   <RotateCw size={14} /> Rotate
                 </button>
               )}
-              <button onClick={() => { setItems([]); setSelected(null); }} className="w-full py-2 bg-charcoal text-warm-white border border-white/10 rounded-xl text-sm hover:border-red-400/50 hover:text-red-400 transition font-medium flex justify-center items-center gap-2">
+              <button onClick={() => { setItems([]); setSelected(null); }} className="w-full py-2 bg-background text-foreground border border-border rounded-xl text-sm hover:border-red-400 hover:text-red-500 transition font-medium flex justify-center items-center gap-2">
                 <Trash2 size={14} /> Clear
               </button>
             </div>
@@ -268,20 +268,20 @@ function Planner() {
               if (e.key === "r") rotate();
             }}
             onClick={(e) => e.target === e.currentTarget && setSelected(null)}
-            className="relative rounded-3xl overflow-hidden shadow-elegant outline-none focus:ring-1 focus:ring-accent-pistachio bg-[#0a0f16]"
+            className="relative rounded-3xl overflow-hidden shadow-soft border border-border outline-none focus:ring-1 focus:ring-accent-pistachio bg-card"
             style={{
               aspectRatio: `${COLS}/${ROWS}`,
               backgroundImage: `
-                linear-gradient(rgba(100, 150, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(100, 150, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(rgba(100, 150, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(100, 150, 255, 0.03) 1px, transparent 1px)
+                linear-gradient(rgba(147, 180, 139, 0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(147, 180, 139, 0.2) 1px, transparent 1px),
+                linear-gradient(rgba(147, 180, 139, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(147, 180, 139, 0.05) 1px, transparent 1px)
               `,
               backgroundSize: `${100 / (COLS/4)}% ${100 / (ROWS/3)}%, ${100 / (COLS/4)}% ${100 / (ROWS/3)}%, ${100 / COLS}% ${100 / ROWS}%, ${100 / COLS}% ${100 / ROWS}%`,
             }}
           >
             {/* Outline box */}
-            <div className="absolute inset-4 border-2 border-blue-400/20 rounded-xl pointer-events-none" />
+            <div className="absolute inset-4 border-2 border-accent-pistachio/30 rounded-xl pointer-events-none" />
 
             {/* Elements */}
             <AnimatePresence>
@@ -306,11 +306,11 @@ function Planner() {
                       height: `${(effH / ROWS) * 100}%`,
                     }}
                   >
-                    <div className={`absolute inset-[1px] transition ${selected === p.uid ? "bg-blue-400/10 ring-1 ring-blue-400/50" : "hover:bg-white/5"}`}>
+                    <div className={`absolute inset-[1px] transition rounded bg-background/50 backdrop-blur-sm border ${selected === p.uid ? "border-accent-sage ring-1 ring-accent-sage shadow-md" : "border-transparent hover:border-accent-pistachio"}`}>
                       <p.icon w={effW} h={effH} rot={p.rot} />
                     </div>
                     {/* Measurement tooltip */}
-                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-black/80 text-blue-200 border border-blue-500/30 text-[9px] px-2 py-0.5 rounded font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none">
+                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-foreground text-background border border-foreground/10 text-[9px] px-2 py-0.5 rounded font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none">
                       {(effW * CELL_M).toFixed(1)}m × {(effH * CELL_M).toFixed(1)}m
                     </div>
                   </motion.div>
@@ -319,7 +319,7 @@ function Planner() {
             </AnimatePresence>
 
             {items.length === 0 && (
-              <div className="absolute inset-0 grid place-items-center pointer-events-none text-blue-200/30 font-mono text-sm uppercase tracking-widest">
+              <div className="absolute inset-0 grid place-items-center pointer-events-none text-muted-foreground/50 font-mono text-sm uppercase tracking-widest">
                 [ Empty Blueprint Canvas ]
               </div>
             )}

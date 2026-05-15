@@ -176,7 +176,7 @@ function Materials() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search materials…"
-              className="w-full bg-gradient-dark text-warm-white rounded-full pl-11 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent-pistachio border border-white/10 placeholder:text-warm-white/40 shadow-soft"
+              className="w-full bg-card text-foreground rounded-full pl-11 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-accent-pistachio border border-border shadow-sm placeholder:text-muted-foreground"
             />
           </div>
           <div className="flex flex-wrap gap-2">
@@ -186,8 +186,8 @@ function Materials() {
                 onClick={() => setCat(c)}
                 className={`relative px-4 py-2 text-sm rounded-full border transition ${
                   cat === c
-                    ? "bg-accent-pistachio text-charcoal border-accent-pistachio font-medium shadow-glow"
-                    : "bg-gradient-dark text-warm-white border-white/10 hover:border-accent-pistachio/50 shadow-soft"
+                    ? "bg-accent-sage text-white border-accent-sage font-medium shadow-sm"
+                    : "bg-card text-foreground border-border hover:border-accent-pistachio hover:text-accent-sage shadow-sm"
                 }`}
               >
                 {c}
@@ -200,49 +200,33 @@ function Materials() {
       <motion.div layout className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <AnimatePresence mode="popLayout">
           {filtered.map((m, i) => (
-            <motion.button
-              layout
-              key={m.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.4, delay: i * 0.03 }}
-              onClick={() => setOpen(m)}
-              className="group relative text-left rounded-3xl overflow-hidden bg-gradient-dark border border-white/5 shadow-elegant hover:shadow-glow transition-all w-full"
-            >
-              <div className="relative h-64 overflow-hidden bg-charcoal">
-                <img 
-                  src={m.img} 
-                  alt={m.name} 
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                />
-                
-                {/* Sheen on hover */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/0 to-white/20 opacity-0 group-hover:opacity-100 transition duration-700 pointer-events-none" />
-                
-                {/* Vignette shadow */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 pointer-events-none" />
-                
-                <span className="absolute top-4 left-4 glass-dark text-warm-white text-[10px] uppercase tracking-[0.2em] px-3 py-1 rounded-full border border-white/10">
-                  {m.cat}
-                </span>
+              <button
+                key={m.name}
+                onClick={() => setOpen(m)}
+                className="group relative text-left rounded-3xl overflow-hidden bg-card border border-border shadow-sm hover:shadow-md transition-all w-full"
+              >
+                <div className="relative h-64 overflow-hidden bg-muted">
+                  <img 
+                    src={m.img} 
+                    alt={m.name} 
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <span className="absolute top-4 left-4 bg-white/80 backdrop-blur text-foreground text-[10px] uppercase tracking-[0.2em] px-3 py-1 rounded-full border border-black/5 shadow-sm">
+                    {m.cat}
+                  </span>
 
-                {/* Click indicator */}
-                <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 backdrop-blur grid place-items-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all border border-white/20">
-                  <Maximize2 size={14} className="text-warm-white" />
+                  <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/80 backdrop-blur grid place-items-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all border border-black/5 shadow-sm">
+                    <Maximize2 size={14} className="text-foreground" />
+                  </div>
                 </div>
-                
-                <div className="absolute bottom-5 left-5 right-5 text-warm-white pointer-events-none">
-                  <h3 className="font-display text-2xl">{m.name}</h3>
+                <div className="p-5">
+                  <h3 className="font-display text-xl mb-1">{m.name}</h3>
+                  <p className="text-sm text-muted-foreground line-clamp-2">{m.desc}</p>
+                  <div className="mt-4 pt-4 border-t border-border flex justify-between items-center">
+                    <p className="text-[10px] text-accent-sage uppercase tracking-widest">{m.notes}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="p-5">
-                <p className="text-sm text-warm-white/70 line-clamp-2">{m.desc}</p>
-                <div className="mt-4 pt-4 border-t border-white/10 flex justify-between items-center">
-                  <p className="text-[10px] text-accent-pistachio uppercase tracking-widest">{m.notes}</p>
-                </div>
-              </div>
-            </motion.button>
+              </button>
           ))}
         </AnimatePresence>
       </motion.div>
@@ -259,7 +243,7 @@ function Materials() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setOpen(null)}
-            className="fixed inset-0 z-[70] bg-black/90 backdrop-blur-md grid place-items-center p-4 lg:p-10 overflow-y-auto"
+            className="fixed inset-0 z-[70] bg-foreground/20 backdrop-blur-md grid place-items-center p-4 lg:p-10 overflow-y-auto"
           >
             <motion.div
               initial={{ scale: 0.95, y: 20, opacity: 0 }}
@@ -267,17 +251,17 @@ function Materials() {
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative bg-gradient-dark text-warm-white max-w-6xl w-full h-[85vh] rounded-[2rem] overflow-hidden shadow-glow border border-white/10 my-auto flex flex-col md:flex-row"
+              className="relative bg-background text-foreground max-w-5xl w-full h-[80vh] rounded-[2rem] overflow-hidden shadow-elegant border border-border my-auto flex flex-col md:flex-row"
             >
               <button
                 onClick={() => setOpen(null)}
-                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-black/40 backdrop-blur grid place-items-center hover:bg-black/60 transition z-50 border border-white/20 text-warm-white"
+                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-background/80 backdrop-blur grid place-items-center hover:bg-muted transition z-50 border border-border shadow-sm"
               >
                 <X size={18} />
               </button>
 
               {/* LEFT PANEL: Massive Texture View */}
-              <div className="w-full md:w-3/5 h-64 md:h-full relative bg-charcoal">
+              <div className="w-full md:w-1/2 h-64 md:h-full relative bg-muted border-r border-border">
                 <motion.img 
                   initial={{ scale: 1.1 }}
                   animate={{ scale: 1 }}
@@ -286,22 +270,20 @@ function Materials() {
                   alt={open.name} 
                   className="absolute inset-0 w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/80 pointer-events-none md:block hidden" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/0 pointer-events-none md:hidden block" />
               </div>
 
               {/* RIGHT PANEL: Metadata */}
-              <div className="w-full md:w-2/5 h-full overflow-y-auto p-8 md:p-12 flex flex-col bg-charcoal/80 relative z-10 border-l border-white/5">
-                <span className="text-[10px] uppercase tracking-[0.25em] text-accent-pistachio mb-3 inline-block">
+              <div className="w-full md:w-1/2 h-full overflow-y-auto p-8 md:p-12 flex flex-col bg-background relative z-10">
+                <span className="text-[10px] uppercase tracking-[0.25em] text-accent-sage mb-3 inline-block font-bold">
                   {open.cat} Material
                 </span>
-                <h2 className="font-display text-4xl md:text-5xl mb-6">{open.name}</h2>
-                <p className="text-lg text-warm-white/80 leading-relaxed mb-10">{open.desc}</p>
+                <h2 className="font-display text-4xl mb-4">{open.name}</h2>
+                <p className="text-lg text-muted-foreground leading-relaxed mb-8">{open.desc}</p>
                 
                 <div className="space-y-6 flex-1">
                   {/* Generic Notes */}
-                  <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                    <p className="text-sm italic text-warm-white/90">{open.notes}</p>
+                  <div className="bg-muted rounded-xl p-4 border border-border">
+                    <p className="text-sm italic text-foreground">{open.notes}</p>
                   </div>
 
                   {/* Deep Metadata (if available) */}
@@ -309,33 +291,33 @@ function Materials() {
                     <div className="grid grid-cols-2 gap-x-6 gap-y-4">
                       {open.finish && (
                         <div>
-                          <p className="text-[9px] uppercase tracking-[0.2em] text-warm-white/40 mb-1">Finish</p>
+                          <p className="text-[9px] uppercase tracking-[0.2em] text-muted-foreground mb-1">Finish</p>
                           <p className="text-sm font-medium">{open.finish}</p>
                         </div>
                       )}
                       {open.durability && (
                         <div>
-                          <p className="text-[9px] uppercase tracking-[0.2em] text-warm-white/40 mb-1">Durability</p>
+                          <p className="text-[9px] uppercase tracking-[0.2em] text-muted-foreground mb-1">Durability</p>
                           <p className="text-sm font-medium">{open.durability}</p>
                         </div>
                       )}
                       {open.origin && (
                         <div>
-                          <p className="text-[9px] uppercase tracking-[0.2em] text-warm-white/40 mb-1">Origin</p>
+                          <p className="text-[9px] uppercase tracking-[0.2em] text-muted-foreground mb-1">Origin</p>
                           <p className="text-sm font-medium">{open.origin}</p>
                         </div>
                       )}
                     </div>
                   )}
 
-                  {(open.applications || open.pairings) && <div className="h-px w-full bg-white/5 my-2" />}
+                  {(open.applications || open.pairings) && <div className="h-px w-full bg-border my-2" />}
 
                   {open.applications && (
                     <div>
-                      <p className="text-[9px] uppercase tracking-[0.2em] text-warm-white/40 mb-2">Recommended For</p>
+                      <p className="text-[9px] uppercase tracking-[0.2em] text-muted-foreground mb-2">Recommended For</p>
                       <div className="flex flex-wrap gap-2">
                         {open.applications.map(app => (
-                          <span key={app} className="text-xs px-3 py-1.5 rounded-md bg-white/5 border border-white/10 text-warm-white/80">
+                          <span key={app} className="text-xs px-3 py-1.5 rounded-md bg-muted border border-border">
                             {app}
                           </span>
                         ))}
@@ -345,11 +327,10 @@ function Materials() {
 
                   {open.pairings && (
                     <div>
-                      <p className="text-[9px] uppercase tracking-[0.2em] text-warm-white/40 mb-2">Ideal Pairings</p>
+                      <p className="text-[9px] uppercase tracking-[0.2em] text-muted-foreground mb-2">Ideal Pairings</p>
                       <div className="flex flex-wrap gap-2">
                         {open.pairings.map((pair, idx) => (
-                          <div key={idx} className="flex items-center gap-2 text-sm bg-black/40 px-3 py-1.5 rounded-md border border-white/5">
-                            <div className="w-1.5 h-1.5 rounded-full bg-accent-pistachio/50" />
+                          <div key={idx} className="flex items-center gap-2 text-sm bg-accent-light text-accent-sage px-3 py-1.5 rounded-md border border-accent-sage/20">
                             {pair}
                           </div>
                         ))}
