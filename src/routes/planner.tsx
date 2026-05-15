@@ -165,7 +165,7 @@ function Planner() {
                 }}
               >
                 {p.name}
-              </motion.div>
+              </div>
             ))}
 
             {items.length === 0 && (
