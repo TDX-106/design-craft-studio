@@ -145,9 +145,8 @@ function Planner() {
             }}
           >
             {items.map((p) => (
-              <motion.div
+              <div
                 key={p.uid}
-                layout
                 draggable
                 onDragStart={(e) => {
                   e.dataTransfer.setData("type", p.uid);
