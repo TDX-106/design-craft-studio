@@ -67,7 +67,7 @@ export function Navbar() {
           }`}
         >
           <Link to="/" className="flex items-center gap-3 group">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-500 group-hover:rotate-90">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-500 group-hover:rotate-90 flex-shrink-0">
               <rect width="32" height="32" rx="10" fill="url(#paint0_linear)" />
               <path d="M10 10H16C19.3137 10 22 12.6863 22 16C22 19.3137 19.3137 22 16 22H10V10Z" fill="white" fillOpacity="0.9" />
               <circle cx="16" cy="16" r="3" fill="#2c2825" />
@@ -80,8 +80,8 @@ export function Navbar() {
             </svg>
             <div className="flex items-center gap-3">
               <div className="w-px h-5 bg-gradient-to-b from-transparent via-border to-transparent" />
-              <span className="font-logo text-2xl tracking-tight font-extrabold">
-                Design<span className="text-accent-sage font-bold">Craft</span>
+              <span className="font-display text-2xl leading-none tracking-normal font-bold text-foreground">
+                Design<span className="text-accent-sage italic">Craft</span>
               </span>
             </div>
           </Link>

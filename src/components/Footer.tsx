@@ -6,12 +6,12 @@ export function Footer() {
     <footer className="relative mt-32 border-t border-border bg-background-secondary/60">
       <div className="mx-auto max-w-7xl px-6 md:px-10 py-16 grid md:grid-cols-4 gap-10">
         <div className="md:col-span-2">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="w-9 h-9 rounded-lg bg-gradient-accent grid place-items-center text-warm-white font-display text-lg">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="w-9 h-9 rounded-lg bg-gradient-accent grid place-items-center text-warm-white font-logo text-lg flex-shrink-0">
               D
             </span>
-            <span className="font-display text-xl">
-              Design<span className="text-accent-sage">Craft</span>
+            <span className="font-display text-2xl leading-none tracking-normal font-bold text-foreground">
+              Design<span className="text-accent-sage italic">Craft</span>
             </span>
           </div>
           <p className="text-muted-foreground max-w-md leading-relaxed">
